@@ -1,0 +1,56 @@
+/* general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NanumSquare', sans-serif; 
+}
+
+body { 
+    max-width: 1920px;
+}
+
+/* semantic */
+header {
+	background-color: black;
+	color: white;
+}
+
+nav {
+	margin: 0 auto;
+}
+
+nav>ul {
+	list-style: none;
+}
+
+footer {
+	padding: 10px 2%;
+	height: 100px;
+	background-color: black;
+	color: white;
+	text-align: center;
+}
+
+/* class & id */
+.account_left>div, .account_right>div {
+	height: 26px;
+	margin: 5px 0;
+}
+
+.account_right>div>input {
+	height: 100%;
+	width: 80px;
+	font-size: 0.8rem;
+	line-height: 1;
+}
+
+#saveId+label {
+	margin-left: 5px;
+	padding-top: 2px;
+	font-size: 0.8rem;
+}
+
+.nav-link, .nav-link:visited {
+	color: white;
+}

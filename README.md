@@ -3,6 +3,12 @@
 <br>
 
 ## 프로젝트 세팅⚙
+### 인코딩
+이클립스에서 Window > Preferences 클릭
+- General > Workspace > Text file encoding 항목에서 UTF-8 설정
+- General > Editors > Text Editors > Spelling의 Encoding 항목에서 UTF-8 설정
+- Web의 CSS Files, HTML Files, JSP Files 메뉴에서 UTF-8 설정
+
 ### 프로젝트 생성
 - Dynamic Web Project로 생성
 - Source folders on build path: `java` 파일이 저장되는 곳
@@ -18,7 +24,7 @@
 - DB 접속 및 SQL에 필요한 `properties` 파일은 <i>**resources**</i> 폴더를 만들어 이곳에 보관 (`.gitignore`에 추가하기)
 
 ### sample DB
-```
+```ruby
 CREATE TABLE MEMBER (
   USERID VARCHAR2(15) PRIMARY KEY, 
   PASSWORD VARCHAR2(15) NOT NULL, 
