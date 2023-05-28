@@ -11,20 +11,20 @@
 
 ### 프로젝트 생성
 - Dynamic Web Project로 생성
-- Source folders on build path: `java` 파일이 저장되는 곳
-- Default output folder: `class` 파일이 저장되는 곳으로 <i>**src\main\webapp\WEB-INF\classes**</i>으로 지정
+- Source folders on build path: java 파일이 저장되는 곳
+- Default output folder: class 파일이 저장되는 곳으로 <i>**src\main\webapp\WEB-INF\classes**</i>으로 지정
 
 ### 프로젝트 구성
 <p align="center">
     <img src="./docs/img/project_tree_view.png" alt="프로젝트트리뷰" width="50%">
 </p>
 
-- `jsp` 파일은 webapp 폴더에 배치하며 (`index.jsp`가 메인 페이지) 관련 폴더도 같은 경로에 배치
-- Servlet을 비롯한 `java` 파일은 기능별로 나눠서 패키지에 보관
-- DB 접속 및 SQL에 필요한 `properties` 파일은 <i>**resources**</i> 폴더를 만들어 이곳에 보관 (`.gitignore`에 추가하기)
+- jsp 파일은 webapp 폴더에 배치하며 (`index.jsp`가 메인 페이지) 관련 폴더도 같은 경로에 배치
+- Servlet을 비롯한 java 파일은 기능별로 나눠서 패키지에 보관
+- DB 접속 및 SQL 실행에 필요한 properties 파일은 <i>**resources**</i> 폴더를 만들어 이곳에 보관 (`.gitignore`에 추가하기)
 
 ### sample DB
-```ruby
+```sql
 CREATE TABLE MEMBER (
   USERID VARCHAR2(15) PRIMARY KEY, 
   PASSWORD VARCHAR2(15) NOT NULL, 

@@ -1,10 +1,10 @@
 ## 1. 메인페이지
 ### VIEW의 공통 요소 분리하기
 <p align="center">
-    <img src="./docs/img/main_page.png" alt="메인페이지" width="50%">
+    <img src="./img/mainpage.png" alt="메인페이지" width="100%">
 </p>
 
-```ruby
+```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <footer class="d-flex justify-content-center align-items-center">
@@ -21,7 +21,7 @@
 <p>앞으로 제작할 웹 페이지들 중 대부분은 동일한 header와 footer를 가진다. 따라서 해당 요소들은 별도의 jsp 파일로 분리하는 편이 유지보수 측면에도 좋다.</p>
 <br>
 
-```ruby
+```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ include file="/views/common/head.jsp" %>

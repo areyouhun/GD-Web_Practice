@@ -3,7 +3,7 @@
 <header class="px-3 py-3">
 	<div class="d-flex justify-content-between align-items-center">
 		<h1 class="fw-bolder">HEADER</h1>
-		<form>
+		<form action="<%= request.getContextPath() %>/login.do" method="post">
 			<div class="account d-flex justify-content-between">
 				<div class="account_left d-flex flex-column justify-content-between me-2">
 					<div>
