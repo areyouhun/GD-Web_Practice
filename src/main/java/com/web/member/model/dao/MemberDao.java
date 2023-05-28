@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import com.web.common.JDBCTemplate;
 import com.web.common.PropertiesGenerator;
 import com.web.member.model.dto.Member;
 

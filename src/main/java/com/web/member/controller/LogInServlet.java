@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.member.model.dto.Member;
+import com.web.member.service.MemberService;
 
 @WebServlet("/login.do")
 public class LogInServlet extends HttpServlet {

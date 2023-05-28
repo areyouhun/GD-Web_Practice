@@ -22,7 +22,8 @@
 - jsp 파일은 webapp 폴더에 배치하며 (`index.jsp`가 메인 페이지) 관련 폴더도 같은 경로에 배치
 - Servlet을 비롯한 java 파일은 기능별로 나눠서 패키지에 보관
 - DB 접속 및 SQL 실행에 필요한 properties 파일은 <i>**resources**</i> 폴더를 만들어 이곳에 보관 (`.gitignore`에 추가하기)
-
+	- 사진을 보면 resources가 프로젝트 바로 밑에 있는데 권장하는 경로는 <i>**src/main/resources**</i>😅
+		
 ### sample DB
 ```sql
 CREATE TABLE MEMBER (
