@@ -45,7 +45,7 @@
 					<input type="button" class="btn btn-light" value="마이페이지">
 				</div>
 				<div>
-					<input type="button" class="btn btn-light" value="로그아웃">
+					<input type="button" class="btn btn-light" value="로그아웃" onclick="location.replace('<%= request.getContextPath() %>/logout.do')">
 				</div>
 			</div>
 		</div>
