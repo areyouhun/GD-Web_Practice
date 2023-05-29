@@ -18,7 +18,8 @@
 </html>
 ```
 <p align="right"><code>footer.jsp</code></p>
-<p>앞으로 제작할 웹 페이지들 중 대부분은 동일한 header와 footer를 가진다. 따라서 해당 요소들은 별도의 jsp 파일로 분리하는 편이 유지보수 측면에도 좋다.</p>
+
+앞으로 제작할 웹 페이지들 중 대부분은 동일한 header와 footer를 가진다. 따라서 해당 요소들은 별도의 jsp 파일로 분리하는 편이 유지보수 측면에도 좋다. <i>**src/main/webapp/views**</i>에서 common이란 폴더를 생성한 뒤 분리한 jsp 파일들을 이곳으로 옮긴다.
 <br>
 
 ```jsp
