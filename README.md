@@ -7,24 +7,25 @@
 이클립스에서 Window > Preferences 클릭
 - General > Workspace > Text file encoding 항목에서 UTF-8 설정
 - General > Editors > Text Editors > Spelling의 Encoding 항목에서 UTF-8 설정
-- Web의 CSS Files, HTML Files, JSP Files 메뉴에서 UTF-8 설정
+- Web의 <i>**CSS Files, HTML Files, JSP Files**</i> 메뉴에서 UTF-8 설정
 
 ### 프로젝트 생성
 - Dynamic Web Project로 생성
-- Source folders on build path: `java` 파일이 저장되는 곳
-- Default output folder: `class` 파일이 저장되는 곳으로 <i>**src\main\webapp\WEB-INF\classes**</i>으로 지정
+- Source folders on build path: java 파일이 저장되는 곳
+- Default output folder: class 파일이 저장되는 곳으로 <i>**src\main\webapp\WEB-INF\classes**</i>으로 지정
 
 ### 프로젝트 구성
 <p align="center">
     <img src="./docs/img/project_tree_view.png" alt="프로젝트트리뷰" width="50%">
 </p>
 
-- `jsp` 파일은 webapp 폴더에 배치하며 (`index.jsp`가 메인 페이지) 관련 폴더도 같은 경로에 배치
-- Servlet을 비롯한 `java` 파일은 기능별로 나눠서 패키지에 보관
-- DB 접속 및 SQL에 필요한 `properties` 파일은 <i>**resources**</i> 폴더를 만들어 이곳에 보관 (`.gitignore`에 추가하기)
-
+- jsp 파일은 webapp 폴더에 배치하며 (`index.jsp`가 메인 페이지) 관련 폴더도 같은 경로에 배치
+- 서블릿을 비롯한 java 파일은 기능별로 나눠서 패키지에 보관
+- DB 접속 및 SQL 실행에 필요한 properties 파일은 <i>**resources**</i> 폴더를 만들어 이곳에 보관 (`.gitignore`에 추가하기)
+	- 사진을 보면 resources가 프로젝트 바로 밑에 있는데 권장 경로는 <i>**src/main/resources**</i>😅
+		
 ### sample DB
-```ruby
+```sql
 CREATE TABLE MEMBER (
   USERID VARCHAR2(15) PRIMARY KEY, 
   PASSWORD VARCHAR2(15) NOT NULL, 
@@ -55,6 +56,7 @@ CREATE TABLE MEMBER (
     - 설치가 끝나면 lombok 파일도 `ojdbc.jar`와 같은 경로에 추가
 
 ## 기능 목록📃
-| 기능 | 설명 |
+| 기능 | 요약 |
 | ------ | ------ |
 | [1. 메인페이지](./docs/FEAT1_main.md) | 페이지 구성 시 공통 요소에 대해 별도의 jsp 파일로 분리 |
+| [2. 로그인](./docs/FEAT2_login.md) | 로그인 성공과 실패에 따라 달라지는 세션의 저장 정보 및 화면 구현 |
