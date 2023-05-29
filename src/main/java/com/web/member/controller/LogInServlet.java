@@ -28,6 +28,10 @@ public class LogInServlet extends HttpServlet {
 		if (member != null) {
 			request.getSession().setAttribute("memberLoggedIn", member);
 			response.sendRedirect(request.getContextPath());
+		} else {
+			request.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 	}
 
