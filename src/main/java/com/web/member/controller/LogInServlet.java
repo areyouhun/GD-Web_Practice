@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,18 @@ public class LogInServlet extends HttpServlet {
 	{
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
+		String saveId = request.getParameter("saveId");
 		
+		if (saveId != null) {
+			Cookie cookie = new Cookie("saveId", userId);
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("saveId", "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+
 		Member member = new MemberService().selectByAccount(userId, userPw);
 		
 		if (member != null) {

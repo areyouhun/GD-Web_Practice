@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.web.member.model.dto.Member" %>
+<%@ page import="com.web.member.model.dto.Member, java.util.Arrays" %>
 <%
 	Object obj = session.getAttribute("memberLoggedIn");
 	Member memberLoggedIn = null;
@@ -8,6 +8,14 @@
 	if (obj != null) {
 		memberLoggedIn = Member.class.cast(obj);
 	}
+	
+	String saveId;
+	Cookie[] cookies = request.getCookies();
+	saveId = Arrays.stream(cookies)
+					.filter(cookie -> cookie.getName().equals("saveId"))
+					.findFirst()
+					.map(cookie -> cookie.getValue())
+					.orElse("");
 %>
 <header class="px-3 py-3">
 	<div class="d-flex justify-content-between align-items-center">
@@ -17,7 +25,7 @@
 			<div class="account d-flex justify-content-between">
 				<div class="account_left d-flex flex-column justify-content-between me-2">
 					<div>
-						<input id="userId" name="userId" placeholder="ID">
+						<input id="userId" name="userId" placeholder="ID" value="<%= saveId %>">
 					</div>
 					<div>
 						<input type="password" id="userPw" name="userPw" placeholder="PW">
@@ -33,7 +41,7 @@
 				</div>
 			</div>
 			<div class="d-flex align-items-center">
-				<input type="checkbox" name="saveId" id="saveId">
+				<input type="checkbox" name="saveId" id="saveId" <%= saveId.equals("") ? "" : "checked" %>>
 				<label for="saveId">아이디저장</label>
 			</div>
 		</form>
@@ -78,7 +86,7 @@
 		
 		if (pw.length < 4) {
 			alert('비밀번호는 4글자 이상 입력해야 합니다.');
-			$('#userId').focus();
+			$('#userPw').focus();
 			return false;
 		}
 	};
