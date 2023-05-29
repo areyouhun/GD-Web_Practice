@@ -13,7 +13,7 @@
 	<div class="d-flex justify-content-between align-items-center">
 		<h1 class="fw-bolder">HEADER</h1>
 		<% if (memberLoggedIn == null) { %>
-		<form action="<%= request.getContextPath() %>/login.do" method="post">
+		<form action="<%= request.getContextPath() %>/login.do" method="post" onsubmit="return validateAccount();">
 			<div class="account d-flex justify-content-between">
 				<div class="account_left d-flex flex-column justify-content-between me-2">
 					<div>
@@ -65,3 +65,21 @@
 		</ul>
 	</nav>
 </header>
+<script>
+	const validateAccount = () => {
+		const id = $('#userId').val();
+		const pw = $('#userPw').val();
+		
+		if (id.length < 4) {
+			alert('아이디는 4글자 이상 입력해야 합니다.');
+			$('#userId').focus();
+			return false;
+		}
+		
+		if (pw.length < 4) {
+			alert('비밀번호는 4글자 이상 입력해야 합니다.');
+			$('#userId').focus();
+			return false;
+		}
+	};
+</script>
