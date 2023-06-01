@@ -16,4 +16,4 @@ section {
 		<h2>WEB PRACTICE</h2>
 	</section>
 <!-- more script tags here -->
-<%@ include file="views/common/footer.jsp"%>
+<%@ include file="/views/common/footer.jsp" %>

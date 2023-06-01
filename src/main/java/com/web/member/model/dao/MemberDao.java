@@ -42,6 +42,31 @@ public class MemberDao {
 		}
 		return member;
 	}
+	
+	public int enrollMember(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("enrollMember"));
+			pstmt.setString(1, member.getUserId());
+			pstmt.setString(2, member.getPassword());
+			pstmt.setString(3, member.getUserName());
+			pstmt.setString(4, member.getGender());
+			pstmt.setInt(5, member.getAge());
+			pstmt.setString(6, member.getEmail());
+			pstmt.setString(7, member.getPhone());
+			pstmt.setString(8, member.getAddress());
+			pstmt.setString(9, String.join(",", member.getHobby()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	private Member generateMemberBy(ResultSet rs) throws SQLException {
 		return Member.builder()

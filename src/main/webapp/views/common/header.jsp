@@ -36,7 +36,7 @@
 						<input type="submit" class="btn btn-light" value="로그인">
 					</div>
 					<div>
-						<input type="button" class="btn btn-secondary" value="회원가입">
+						<input type="button" class="btn btn-secondary" value="회원가입" onclick="location.assign('<%= request.getContextPath() %>/member/enrollMember.do');">
 					</div>
 				</div>
 			</div>
