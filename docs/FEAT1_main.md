@@ -3,6 +3,7 @@
 <p align="center">
     <img src="./img/mainpage.png" alt="메인페이지" width="100%">
 </p>
+<br><br>
 
 ```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"

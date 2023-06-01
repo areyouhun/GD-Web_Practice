@@ -74,6 +74,7 @@ public class LogOutServlet extends HttpServlet {
 <p align="right"><code>header.jsp 중 일부</code></p>
 
 로그인 시 아이디나 비밀번호가 일정 글자 수 이상인지를 검증하는 기능은 굳이 서버에서 맡지 않고 프론트에서 처리하는 게 효율적이다. `<form>`에 있는 로그인 버튼의 타입이 submit이라서 버튼 클릭 시 무조건 전송이 이루어지기 때문에 `<form>`에 <i>**onsubmit 이벤트**</i>를 부여해 유효성 검사를 통과할 때만 전송되도록 설정한다.
+<br><br>
 
 ```jsp
 <script>

@@ -6,6 +6,7 @@
 - 클라이언트가 서버한테 아이디와 비밀번호를 전달
 - 서버는 클라이언트가 보낸 아이디와 비밀번호를 갖고 DB에 접속해 일치하는 정보가 있는지 조회
 - 일치하는 정보가 있으면 로그인 성공, 없으면 실패
+<br><br>
 
 ```jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
