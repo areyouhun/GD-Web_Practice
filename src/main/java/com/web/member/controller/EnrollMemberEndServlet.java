@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.web.member.model.dto.Member;
 import com.web.member.service.MemberService;
 
-@WebServlet({ "/EnrollMemberEndServlet", "/member/enrollMemberEnd.do" })
+@WebServlet("/member/enrollMemberEnd.do")
 public class EnrollMemberEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,5 +51,4 @@ public class EnrollMemberEndServlet extends HttpServlet {
 	{
 		doGet(request, response);
 	}
-
 }

@@ -64,3 +64,5 @@ CREATE TABLE MEMBER (
 | [2. 로그인](./docs/FEAT2_login.md) | 로그인 성공과 실패에 따라 달라지는 세션 데이터 및 화면 구현 |
 | [3. 로그아웃 & ID와 PW 유효성 검사](./docs/FEAT3_logout.md) | 로그아웃 시 세션 삭제 & 간단한 유효성 검사는 프론트에서 처리 |
 | [4. 아이디 저장](./docs/FEAT4_saveid.md) | 쿠키를 이용한 아이디 저장 |
+| [5. 회원가입 1](./docs/FEAT5_enroll1.md) | 회원 정보 등록 및 인코딩 |
+| [6. 회원가입 2](./docs/FEAT6_enroll2.md) | ID와 PW 유효성 검사 |
