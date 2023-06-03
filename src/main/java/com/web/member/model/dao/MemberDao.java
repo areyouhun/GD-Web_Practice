@@ -67,6 +67,28 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public Member selectById(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member member = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectById"));
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				member = generateMemberBy(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return member;		
+	}
 
 	private Member generateMemberBy(ResultSet rs) throws SQLException {
 		return Member.builder()
