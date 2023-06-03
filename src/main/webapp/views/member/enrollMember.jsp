@@ -104,13 +104,11 @@
 		$(selector).text(msg).css('color', color);
 	};
 	
+	function setIdValid() {
+		isIdValid = true;
+	}
+	
 	const validateEnrollment = () => {
-		if (userIdToUse.val().length < 4) {
-			alert('아이디는 4글자 이상 입력하세요.');
-			userIdToUse.focus();
-			return false;
-		}
-		
 		if (isIdValid == false || isPwValid == false) {
 			alert('필수 입력 조건을 통과하지 못했습니다.');
 			return false;
@@ -118,9 +116,14 @@
 	};
 	
 	const validateDuplication = () => {
-		window.open("<%= request.getContextPath() %>/member/idDuplicate.do?userId=" + userIdToUse.val(), 
-				"_blank",
-				"width=300, height=200, left=200, top=200")
+		if (userIdToUse.val().length < 4) {
+			alert('아이디는 4글자 이상 입력하세요.');
+			userIdToUse.focus();
+		} else {
+			window.open("<%= request.getContextPath() %>/member/idDuplicate.do?userId=" + userIdToUse.val(), 
+					"_blank",
+					"width=300, height=200, left=200, top=200");
+		}
 	};
 	
 	const validatePwToUse = (selector) => {

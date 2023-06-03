@@ -38,7 +38,7 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		
 		if (result == 0) {
 			msg = "회원가입에 실패했습니다.";
-			loc = "/member/enrollMember.do"; // request.getRequestURL() 해보기
+			loc = "/member/enrollMember.do";
 		}
 		
 		request.setAttribute("msg", msg);

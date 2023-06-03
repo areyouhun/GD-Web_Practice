@@ -23,7 +23,6 @@ public class IdDuplicateServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		Member member = new MemberService().selectById(userId);
 		
-		request.setAttribute("userId", userId);
 		request.setAttribute("result", member);
 		request.getRequestDispatcher("/views/member/idDuplicate.jsp").forward(request, response);
 	}
