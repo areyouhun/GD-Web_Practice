@@ -28,19 +28,21 @@
 					<th>아이디</th>
 					<td>
 						<input type="text" placeholder="4글자이상" name="userId" id="idToUse"> 
-						<input type="button" value="중복확인" class="btn btn-secondary py-1">
+						<input type="button" value="중복확인" onclick="validateDuplication();" class="btn btn-secondary py-1">
 					</td>
 				</tr>
 				<tr>
 					<th>패스워드</th>
 					<td style="position: relative">
-						<input type="password" name="password" id="passwordToUse" onkeyup="validatePwToUse(this);"><span class="warning-absolute"></span>
+						<input type="password" name="password" id="passwordToUse" onkeyup="validatePwToUse(this);">
+						<span class="warning-absolute"></span>
 					</td>
 				</tr>
 				<tr>
 					<th>패스워드 확인</th>
 					<td style="position: relative">
-						<input type="password" id="passwordToConfirm" onkeyup="validatePwToConfirm(this);"><span class="warning-absolute"></span>
+						<input type="password" id="passwordToConfirm" onkeyup="validatePwToConfirm(this);">
+						<span class="warning-absolute"></span>
 					</td>
 				</tr>
 				<tr>
@@ -88,92 +90,65 @@
 				</tr>
 			</table>
 			<div class="d-flex justify-content-center">
-				<input type="submit" value="가입" onclick="return validateEnrollment2();" class="btn btn-dark mx-1">
+				<input type="submit" value="가입" onclick="return validateEnrollment();" class="btn btn-dark mx-1">
 				<input type="reset" value="취소" class="btn btn-dark mx-1">
 			</div>
 		</form>
 	</section>
 <script>
+	const userIdToUse = $('#idToUse');
+	let isIdValid = false;
+	let isPwValid = false;
+
 	const insertMsg = (selector, msg, color) => {
 		$(selector).text(msg).css('color', color);
-	}
+	};
 	
-	/* const validateEnrollment = () => {
-		if (userIdToUse.val().length < 4) {
-			alert('아이디는 4글자 이상 입력하세요.');
-			userId.focus();
-			return false;
-		}
-		
-		if (!(passwordToUse.next().text() == '' && passwordToConfirm.next().text() == '')) {
-			alert('필수 입력 조건을 통과하지 못했습니다.');
-			return false;
-		}
-	} */
-	
-	const validateEnrollment2 = () => {
-		const userIdToUse = $('#idToUse');
+	const validateEnrollment = () => {
 		if (userIdToUse.val().length < 4) {
 			alert('아이디는 4글자 이상 입력하세요.');
 			userIdToUse.focus();
 			return false;
 		}
 		
-		if (!(validatePwToUse('#passwordToUse') && validatePwToConfirm('#passwordToConfirm'))) {
+		if (isIdValid == false || isPwValid == false) {
 			alert('필수 입력 조건을 통과하지 못했습니다.');
 			return false;
 		}
-		return true;
-	}
+	};
+	
+	const validateDuplication = () => {
+		window.open("<%= request.getContextPath() %>/member/idDuplicate.do?userId=" + userIdToUse.val(), 
+				"_blank",
+				"width=300, height=200, left=200, top=200")
+	};
 	
 	const validatePwToUse = (selector) => {
 		let color = '';
 		let msg = '';
-		let isValid = true;
 		
 		if ($(selector).val().length < 4) {
 			msg = ' 4자 이상!';
 			color = 'red';
-			isValid = false;
+			isPwValid = false;
+		} else {
+			isPwValid = true;
 		}
 		insertMsg($(selector).next(), msg, color);
-		return isValid;
-	}
+	};
 	
 	const validatePwToConfirm = (selector) => {
 		let msg = ' 일치';
 		let color = 'green';
-		let isValid = true;
 		
 		if ($(selector).val().length < 4) {
 			msg = ' 불일치';
 			color = 'red';
-			isValid = false;
+			isPwValid = false;
+		} else {
+			isPwValid = true;
 		}
 		insertMsg($(selector).next(), msg, color);
-		return isValid;
-	}
-	
-	/* passwordToUse.on('keyup', (event) => {
-		let color = '';
-		let msg = '';
-		
-		if ($(event.target).val().length < 4) {
-			msg = ' 4자 이상!';
-			color = 'red';
-		}
-		insertMsg($(event.target).next(), msg, color);
-	});
-	
-	passwordToConfirm.on('keyup', (event) => {
-		let msg = ' 일치';
-		let color = 'green';
-		
-		if (passwordToUse.val() != $(event.target).val()) {
-			msg = ' 불일치';
-			color = 'red';
-		}
-		insertMsg($(event.target).next(), msg, color);
-	}) */
+	};
 </script>
 <%@ include file="/views/common/footer.jsp" %>
