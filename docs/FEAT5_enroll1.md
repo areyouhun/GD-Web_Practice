@@ -167,4 +167,4 @@ public class EncodingFilter extends HttpFilter implements Filter {
     <img src="./img/encoding_solved.png" alt="인코딩통일" width="100%">
 </p>
 
-좋았어! 이제 유효성 검사로 간다.
+좋았어! 이제 유효성 검사로 간다. (취미 컬럼에 값을 넣을 때 저런 식으로 넣으면 안 되지만 역시나 연습이기에 ㅎㅎ)

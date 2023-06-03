@@ -35,7 +35,7 @@
 	<div id="checkId-container">
 		<% if (member != null) { %>
 			<span id="duplicated"><%= request.getParameter("userId") %></span>는 사용중입니다.<br><br>
-			<form action="<%=request.getContextPath()%>/member/idDuplicate.do">
+			<form action="<%=request.getRequestURI()%>">
 				<input type="text" name="userId" id="userId"> 
 				<input type="submit" value="중복검사">
 			</form>

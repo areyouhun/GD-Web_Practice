@@ -144,7 +144,7 @@
 		let msg = ' 일치';
 		let color = 'green';
 		
-		if ($(selector).val().length < 4) {
+		if ($(selector).val() != $('#passwordToUse').val()) {
 			msg = ' 불일치';
 			color = 'red';
 			isPwValid = false;
