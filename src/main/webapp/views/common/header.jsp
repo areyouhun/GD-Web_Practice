@@ -50,7 +50,7 @@
 			<p class="mb-0 text-center"><%= memberLoggedIn.getUserId() %>님, 환영합니다:)</p>
 			<div class="account_right d-flex justify-content-between" style="width:165px">
 				<div>
-					<input type="button" class="btn btn-light" value="마이페이지">
+					<input type="button" class="btn btn-light" value="마이페이지" onclick="location.assign('<%= request.getContextPath() %>/member/memberView.do')">
 				</div>
 				<div>
 					<input type="button" class="btn btn-light" value="로그아웃" onclick="location.replace('<%= request.getContextPath() %>/logout.do')">
