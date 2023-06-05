@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.web.member.model.dto.Member;
 import com.web.member.service.MemberService;
 
-@WebServlet("/member/memberView.do")
+@WebServlet(name="memberView", urlPatterns="/member/memberView.do")
 public class MemberViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
