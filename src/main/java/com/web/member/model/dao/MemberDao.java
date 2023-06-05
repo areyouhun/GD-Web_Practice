@@ -112,6 +112,23 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public int updatePassword(Connection conn, String userId, String newPw) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("updatePassword"));
+			pstmt.setString(1, newPw);
+			pstmt.setString(2, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	private Member generateMemberBy(ResultSet rs) throws SQLException {
 		return Member.builder()

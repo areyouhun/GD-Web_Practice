@@ -37,9 +37,8 @@ public class UpdatePasswordEndServlet extends HttpServlet {
 				msg = "비밀번호 수정에 실패했습니다.";
 			} else {
 				msg = "비밀번호가 성공적으로 수정되었습니다.";
-				loc = "/";
 				request.setAttribute("script", 
-									String.format("window.opener.replace.loaction('%s/logout.do'); window.close();", request.getContextPath())
+									String.format("window.opener.location.replace('%s/logout.do'); window.close();", request.getContextPath())
 									);
 			}
 		}
