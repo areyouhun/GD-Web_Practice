@@ -38,8 +38,12 @@ public class UpdateMemberEndServlet extends HttpServlet {
 		
 		if (result > 0) {
 			msg = "회원정보가 성공적으로 수정되었습니다.";
+			loc = "/";
 			request.getSession().setAttribute("memberLoggedIn", member);
 		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 

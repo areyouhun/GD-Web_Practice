@@ -89,6 +89,29 @@ public class MemberDao {
 		}
 		return member;		
 	}
+	
+	public int updateMember(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("updateMember"));
+			pstmt.setString(1, member.getUserName());
+			pstmt.setInt(2, member.getAge());
+			pstmt.setString(3, member.getGender());
+			pstmt.setString(4, member.getEmail());
+			pstmt.setString(5, member.getPhone());
+			pstmt.setString(6, member.getAddress());
+			pstmt.setString(7, String.join(",", member.getHobby()));
+			pstmt.setString(8, member.getUserId());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	private Member generateMemberBy(ResultSet rs) throws SQLException {
 		return Member.builder()
