@@ -28,7 +28,7 @@
 						<input id="userId" name="userId" placeholder="ID" value="<%= saveId %>">
 					</div>
 					<div>
-						<input type="password" id="userPw" name="userPw" placeholder="PW">
+						<input type="password" id="userPw" name="password" placeholder="PW">
 					</div>
 				</div>
 				<div class="account_right d-flex flex-column justify-content-between">
