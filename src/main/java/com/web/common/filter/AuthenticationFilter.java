@@ -13,10 +13,8 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-//import com.web.member.model.dto.Member;
-
 @WebFilter(servletNames = { 
-		"memberView", "updateMemberEnd" 
+		"memberView", "updateMemberEnd", "updatePassword" 
 })
 public class AuthenticationFilter extends HttpFilter implements Filter {
 	private static final long serialVersionUID = -302126541455035660L;
@@ -43,7 +41,6 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		} else {
-			System.out.println(request.getParameter("userId"));
 			chain.doFilter(request, response);
 		}
 	}

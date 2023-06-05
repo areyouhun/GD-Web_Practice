@@ -85,7 +85,7 @@
 					</td>
 				</tr>
 			</table>
-			<input type="button" value="비밀번호 수정" class="btn btn-dark mx-1"/>
+			<input type="button" value="비밀번호 수정" class="btn btn-dark mx-1" onclick="updatePassword();"/>
 			<input type="button" value="정보수정" class="btn btn-dark mx-1" onclick="updateMember();"/> 
 			<input type="button" value="탈퇴" class="btn btn-dark mx-1"/>
 		</form>
@@ -93,6 +93,12 @@
 	<script>
 		const updateMember = () => {
 			$('#memberFrm').attr('action', '<%= request.getContextPath() %>/member/updateMemberEnd.do').submit();
-		}
+		};
+		
+		const updatePassword = () => {
+			window.open('<%= request.getContextPath() %>/member/updatePassword.do', 
+					"_blank",
+					"width=400, height=210, left=500, top=200");
+		};
 	</script>
 <%@ include file="/views/common/footer.jsp"%>
