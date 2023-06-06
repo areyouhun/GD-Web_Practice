@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.common.AESEncryptor;
 import com.web.member.model.dto.Member;
 import com.web.member.service.MemberService;
 
@@ -24,6 +25,19 @@ public class MemberViewServlet extends HttpServlet {
 		String userId = Member.class.cast(obj).getUserId();
 		
 		Member member = new MemberService().selectById(userId);
+		
+		try {
+			member.setEmail(AESEncryptor.decrypt(member.getEmail()));
+		} catch (Exception e) {
+			System.out.println("이메일 암호화 실패");
+		}
+		
+		try {
+			member.setPhone(AESEncryptor.decrypt(member.getPhone()));
+		} catch (Exception e) {
+			System.out.println("전화번호 암호화 실패");
+		}
+		
 		request.setAttribute("memberInfo", member);
 		request.getRequestDispatcher("/views/member/memberView.jsp").forward(request, response);
 	}
