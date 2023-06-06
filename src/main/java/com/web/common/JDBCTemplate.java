@@ -12,6 +12,7 @@ public class JDBCTemplate {
 
 	public static Connection getConnection() {
 		String path = JDBCTemplate.class.getResource(DRIVER_PATH).getPath();
+		System.out.println(path);
 		Properties driver = PropertiesGenerator.by(path);
 		Connection conn = null;
 		
