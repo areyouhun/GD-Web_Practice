@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.web.common.JDBCTemplate;
+import com.web.common.MemberGenerator;
 import com.web.common.PropertiesGenerator;
 import com.web.member.model.dto.Member;
 
@@ -32,7 +33,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				member = generateMemberBy(rs);
+				member = MemberGenerator.by(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,7 +80,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				member = generateMemberBy(rs);
+				member = MemberGenerator.by(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -128,20 +129,5 @@ public class MemberDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
-	}
-
-	private Member generateMemberBy(ResultSet rs) throws SQLException {
-		return Member.builder()
-				.userId(rs.getString("USERID"))
-				.password(rs.getString("PASSWORD"))
-				.userName(rs.getString("USERNAME"))
-				.gender(rs.getString("GENDER"))
-				.age(rs.getInt("AGE"))
-				.email(rs.getString("EMAIL"))
-				.phone(rs.getString("PHONE"))
-				.address(rs.getString("ADDRESS"))
-				.hobby(rs.getString("HOBBY").split(","))
-				.enrollDate(rs.getDate("ENROLLDATE"))
-				.build();
 	}
 }

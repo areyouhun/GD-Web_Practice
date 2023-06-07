@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.admin.service.AdminService;
 import com.web.member.model.dto.Member;
 
 @WebServlet("/admin/memberList.do")
@@ -20,7 +21,7 @@ public class MemberListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
-		List<Member> members = new AdminService().selectAll();
+		List<Member> members = new AdminService().selectMemberAll();
 		
 		request.setAttribute("members", members);
 		request.getRequestDispatcher("/views/admin/memberManagement.jsp").forward(request, response);
