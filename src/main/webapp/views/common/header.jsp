@@ -68,11 +68,16 @@
 				<a class="nav-link" href="#">HOME</a>
 			</li>
 			<li class="nav-item fw-bolder mx-5">
-				<a class="nav-link" href="#">NOTICE</a>
+				<a class="nav-link" href="#">공지사항</a>
 			</li>
 			<li class="nav-item fw-bolder mx-5">
-				<a class="nav-link" href="#">BOARD</a>
+				<a class="nav-link" href="#">게시판</a>
 			</li>
+			<% if (memberLoggedIn != null && memberLoggedIn.getUserId().equals("admin")) { %>
+				<li class="nav-item fw-bolder mx-5">
+					<a class="nav-link" href="<%= request.getContextPath() %>/admin/memberList.do">회원관리</a>
+				</li>
+			<% } %>
 		</ul>
 	</nav>
 </header>
