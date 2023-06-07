@@ -4,19 +4,14 @@
 <%@ include file="/views/common/head.jsp" %>
 <% 
 	Object membersUncast = request.getAttribute("members");
-	Object pageBarUncast = request.getAttribute("pageBar");
+	Object pageBar = request.getAttribute("pageBar");
 	
 	List<Member> members = new ArrayList<>();
-	String pageBar = "";
 	
 	if (membersUncast != null && membersUncast instanceof ArrayList<?>) {
 		for (Object obj : (List<?>) membersUncast) {
 			members.add(Member.class.cast(obj));
 		}
-	}
-	
-	if (pageBarUncast != null && pageBarUncast instanceof String) {
-		pageBar = String.valueOf(pageBarUncast);
 	}
 %>
 <title>main page</title>
@@ -60,7 +55,10 @@ section#memberList-container table#tbl-member th, table#tbl-member td {
 	color: gray;
 }
 
-div#search-container {margin:0 0 10px 0; padding:3px;}
+div#search-container {
+	margin: 0 0 10px 0; 
+	padding: 3px;
+}
 
 div#search-userId{display:inline-block;}
     
@@ -95,7 +93,7 @@ form#numperPageFrm{display:inline-block;}
 				<form action="<%=request.getContextPath()%>/admin/searchMember">
 					<input type="hidden" name="searchType" value="userName"> 
 					<input type="text" name="searchKeyword" size="25" placeholder="검색할 이름을 입력하세요">
-					<button type="submit" class="btn btn-secondary">검색</button>
+					<button type="submit" class="btn btn-secondary py-0">검색</button>
 				</form>
 			</div>
 			<div id="search-gender">
@@ -103,7 +101,7 @@ form#numperPageFrm{display:inline-block;}
 					<input type="hidden" name="searchType" value="gender"> 
 					<label><input type="radio" name="searchKeyword" value="M">남</label> 
 					<label><input type="radio" name="searchKeyword" value="F">여</label>
-					<button type="submit" class="btn btn-secondary">검색</button>
+					<button type="submit" class="btn btn-secondary py-0">검색</button>
 				</form>
 			</div>
 		</div>
@@ -153,10 +151,16 @@ form#numperPageFrm{display:inline-block;}
 			} %>
 			</tbody>
 		</table>
-		<% if (!pageBar.isEmpty()) { %>
-			<div id="pageBar">
-				<%= pageBar %>
-			</div>
-		<% } %>
+			<% if (pageBar != null) { %>
+				<div id="pageBar">
+					<%= pageBar %>
+				</div>
+			<% } %>
 	</section>
+<script>
+$('#searchType').change((event) => {
+	$("div[id^='search-']").css('display', 'none');
+	$(`#search-\${event.target.value}`).css('display', 'inline-block');
+})
+</script>
 <%@ include file="/views/common/footer.jsp" %>
