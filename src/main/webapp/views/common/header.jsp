@@ -9,13 +9,16 @@
 		memberLoggedIn = Member.class.cast(obj);
 	}
 	
-	String saveId;
+	String saveId = "";
 	Cookie[] cookies = request.getCookies();
-	saveId = Arrays.stream(cookies)
-					.filter(cookie -> cookie.getName().equals("saveId"))
-					.findFirst()
-					.map(cookie -> cookie.getValue())
-					.orElse("");
+	
+	if (cookies != null) {
+		saveId = Arrays.stream(cookies)
+				.filter(cookie -> cookie.getName().equals("saveId"))
+				.findFirst()
+				.map(cookie -> cookie.getValue())
+				.orElse("");
+	}
 %>
 <header class="px-3 py-3">
 	<div class="d-flex justify-content-between align-items-center">
@@ -28,7 +31,7 @@
 						<input id="userId" name="userId" placeholder="ID" value="<%= saveId %>">
 					</div>
 					<div>
-						<input type="password" id="userPw" name="userPw" placeholder="PW">
+						<input type="password" id="userPw" name="password" placeholder="PW">
 					</div>
 				</div>
 				<div class="account_right d-flex flex-column justify-content-between">
@@ -47,10 +50,10 @@
 		</form>
 		<% } else { %>
 		<div class="d-flex flex-column justify-content-between">
-			<p class="mb-0 text-center"><%= memberLoggedIn.getUserId() %>님, 환영합니다:)</p>
+			<p class="mb-0 text-center"><%= memberLoggedIn.getUserName() %>님, 환영합니다:)</p>
 			<div class="account_right d-flex justify-content-between" style="width:165px">
 				<div>
-					<input type="button" class="btn btn-light" value="마이페이지">
+					<input type="button" class="btn btn-light" value="마이페이지" onclick="location.assign('<%= request.getContextPath() %>/member/memberView.do')">
 				</div>
 				<div>
 					<input type="button" class="btn btn-light" value="로그아웃" onclick="location.replace('<%= request.getContextPath() %>/logout.do')">

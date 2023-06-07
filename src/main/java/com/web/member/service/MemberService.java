@@ -39,4 +39,30 @@ public class MemberService {
 		JDBCTemplate.close(conn);
 		return member;
 	}
+
+	public int updateMember(Member member) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = memberDao.updateMember(conn, member);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int updatePassword(String userId, String newPw) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = memberDao.updatePassword(conn, userId, newPw);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

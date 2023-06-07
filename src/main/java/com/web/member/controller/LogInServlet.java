@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.web.member.model.dto.Member;
 import com.web.member.service.MemberService;
 
-@WebServlet("/login.do")
+@WebServlet(name="login", urlPatterns="/login.do")
 public class LogInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,7 +22,7 @@ public class LogInServlet extends HttpServlet {
 			throws ServletException, IOException 
 	{
 		String userId = request.getParameter("userId");
-		String userPw = request.getParameter("userPw");
+		String userPw = request.getParameter("password");
 		String saveId = request.getParameter("saveId");
 		
 		if (saveId != null) {
