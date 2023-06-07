@@ -23,13 +23,15 @@ public class AdminDao {
 		sql = PropertiesGenerator.by(path);
 	}
 	
-	public List<Member> selectMemberAll(Connection conn) {
+	public List<Member> selectMemberAll(Connection conn, int currentPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Member> members = new ArrayList<>();
 		
 		try {
 			pstmt = conn.prepareStatement(sql.getProperty("selectMemberAll"));
+			pstmt.setInt(1, (currentPage * numPerPage) - numPerPage + 1);
+			pstmt.setInt(2, currentPage * numPerPage);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -42,6 +44,27 @@ public class AdminDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return members;
+	}
+
+	public int selectMemberCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectMemberCount"));
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return count;
 	}
 
 }

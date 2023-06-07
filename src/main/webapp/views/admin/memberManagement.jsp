@@ -3,13 +3,20 @@
 <%@ page import="java.util.ArrayList, java.util.List" %>
 <%@ include file="/views/common/head.jsp" %>
 <% 
-	List<Member> members = new ArrayList<>();
 	Object membersUncast = request.getAttribute("members");
+	Object pageBarUncast = request.getAttribute("pageBar");
+	
+	List<Member> members = new ArrayList<>();
+	String pageBar = "";
 	
 	if (membersUncast != null && membersUncast instanceof ArrayList<?>) {
 		for (Object obj : (List<?>) membersUncast) {
 			members.add(Member.class.cast(obj));
 		}
+	}
+	
+	if (pageBarUncast != null && pageBarUncast instanceof String) {
+		pageBar = String.valueOf(pageBarUncast);
 	}
 %>
 <title>main page</title>
@@ -29,6 +36,10 @@ section#memberList-container table#tbl-member th, table#tbl-member td {
 	padding: 10px;
 }
 
+#pageBar {
+	margin: 20px 0;
+}
+
 #pageBar a, #pageBar span {
 	text-decoration: none;
 	font-size: 1.5rem;
@@ -36,8 +47,17 @@ section#memberList-container table#tbl-member th, table#tbl-member td {
 	margin-right: 2%;
 }
 
+#pageBar a, #pageBar a:visited {
+	color: gray;
+}
+
 #pageBar a:hover {
-	background-color: lime;
+	font-weight: bolder;
+	color: black;
+}
+
+.prev, .next {
+	color: gray;
 }
 
 div#search-container {margin:0 0 10px 0; padding:3px;}
@@ -55,7 +75,7 @@ form#numperPageFrm{display:inline-block;}
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
-	<section id="memberList-container">
+	<section id="memberList-container" class="px-3">
 		<h2 class="mt-5">회원관리</h2>
 		<div id="search-container" class="d-flex justify-content-center align-items-center"> 
 			<p class="mb-0 me-1">검색 타입</p>
@@ -133,8 +153,10 @@ form#numperPageFrm{display:inline-block;}
 			} %>
 			</tbody>
 		</table>
-		<div id="pageBar">
-			<%= request.getAttribute("pageBar") %>
-		</div>
+		<% if (!pageBar.isEmpty()) { %>
+			<div id="pageBar">
+				<%= pageBar %>
+			</div>
+		<% } %>
 	</section>
 <%@ include file="/views/common/footer.jsp" %>
