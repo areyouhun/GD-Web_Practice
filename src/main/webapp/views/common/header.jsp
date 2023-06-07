@@ -9,13 +9,16 @@
 		memberLoggedIn = Member.class.cast(obj);
 	}
 	
-	String saveId;
+	String saveId = "";
 	Cookie[] cookies = request.getCookies();
-	saveId = Arrays.stream(cookies)
-					.filter(cookie -> cookie.getName().equals("saveId"))
-					.findFirst()
-					.map(cookie -> cookie.getValue())
-					.orElse("");
+	
+	if (cookies != null) {
+		saveId = Arrays.stream(cookies)
+				.filter(cookie -> cookie.getName().equals("saveId"))
+				.findFirst()
+				.map(cookie -> cookie.getValue())
+				.orElse("");
+	}
 %>
 <header class="px-3 py-3">
 	<div class="d-flex justify-content-between align-items-center">

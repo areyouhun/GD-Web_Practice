@@ -22,7 +22,6 @@ public class AESEncryptor {
 	
 	public AESEncryptor() {
 		this.path = AESEncryptor.class.getResource("/").getPath();
-		System.out.println(this.path);
 		
 //		WEB-INF 폴더에 저장할 경우
 //		this.path = this.path.substring(0, this.path.indexOf("classes"));
@@ -30,7 +29,6 @@ public class AESEncryptor {
 		File keyFile = new File(this.path + "bslove.bs");
 		
 		if (keyFile.exists()) {
-			System.out.println(keyFile.getAbsolutePath());
 			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(keyFile))) {
 				AESEncryptor.key = (SecretKey) ois.readObject();
 			} catch (IOException e) {
@@ -39,8 +37,6 @@ public class AESEncryptor {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("없음");
-			System.out.println(keyFile.getAbsolutePath());
 			generateKeyBy(keyFile);
 		}
 	}
