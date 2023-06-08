@@ -67,4 +67,27 @@ public class AdminDao {
 		return count;
 	}
 
+	public List<Member> selectMemberByKeyword(Connection conn, String type, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Member> members = new ArrayList<>();
+		final String query = sql.getProperty("selectMemberByKeyword").replace("#COL", type);
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, keyword.equals("gender") ? keyword : "%" + keyword + "%");
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				members.add(MemberGenerator.by(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return members;
+	}
+
 }

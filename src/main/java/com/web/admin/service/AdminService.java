@@ -23,4 +23,11 @@ public class AdminService {
 		JDBCTemplate.close(conn);
 		return count;
 	}
+
+	public List<Member> selectMemberByKeyword(String type, String keyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<Member> members = adminDao.selectMemberByKeyword(conn, type, keyword);
+		JDBCTemplate.close(conn);
+		return members;
+	}
 }
