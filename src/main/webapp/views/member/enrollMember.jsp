@@ -27,8 +27,8 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" placeholder="4글자이상" name="userId" id="idToUse"> 
-						<input type="button" value="중복확인" onclick="validateDuplication();" class="btn btn-secondary py-1">
+						<input type="text" placeholder="4글자이상" name="userId" id="idToUse" duplicate="true"> 
+						<input type="button" value="중복확인" onclick="validateIdDuplication();" class="btn btn-secondary py-1">
 					</td>
 				</tr>
 				<tr>
@@ -90,41 +90,52 @@
 				</tr>
 			</table>
 			<div class="d-flex justify-content-center">
-				<input type="submit" value="가입" onclick="return validateEnrollment();" class="btn btn-dark mx-1">
+				<input type="submit" value="가입" onclick="return isAllValid();" class="btn btn-dark mx-1">
 				<input type="reset" value="취소" class="btn btn-dark mx-1">
 			</div>
 		</form>
 	</section>
 <script>
-	const insertMsg = (element, msg, color) => {
-		$(element).text(msg).css('color', color);
-	};
-	
-	const validateEnrollment = () => {
-		if (validatePw() != true) {
-			alert('필수 입력 조건을 통과하지 못했습니다.');
+	const isAllValid = () => {
+		const idToUse = $('#idToUse');
+		const passwordToUse = $('#passwordToUse').val();
+		const passwordToConfirm = $('passwordToConfirm').val();
+		
+		if (idToUse.val().length < 4) {
+			alert('아이디는 4글자 이상 입력하세요.');
+			return false;
+		}
+		
+		if (idToUse.attr('duplicate') == 'true') {
+			alert('아이디 중복 검사를 통과하지 못 했습니다.');
+			return false;
+		}
+		
+		if (passwordToUse.length < 4) {
+			alert('비밀번호는 4글자 이상 입력하세요.');
+			return false;
+		}
+		
+		if (passwordToUse !== passwordToConfirm) {
+			alert('입력한 비밀번호가 일치하지 않습니다.');
 			return false;
 		}
 	};
 	
-	// 아이디 검사는 클래스로 만들어서 해보기
-	
-	const validateDuplication = () => {
-		const userIdToUse = $('#idToUse');
-		let isIdValid = false;
-		
-		if (userIdToUse.val().length < 4) {
+	const validateIdDuplication = () => {
+		if ($('#idToUse').val().length < 4) {
 			alert('아이디는 4글자 이상 입력하세요.');
-			userIdToUse.focus();
-		} else {
-			window.open("<%= request.getContextPath() %>/member/idDuplicate.do?userId=" + userIdToUse.val(), 
-					"_blank",
-					"width=300, height=200, left=200, top=200");
-		}
+			$('#idToUse').focus();
+			return;
+		} 
+		
+		window.open('<%= request.getContextPath() %>/member/idDuplicate.do?userId=' + $('#idToUse').val(), 
+					'_blank',
+					'width=300, height=200, left=200, top=200');
 	};
 	
-	const validatePw = () => {
-		return (validatePwLength('#passwordToUse') && validatePwCorrectness('#passwordToConfirm'));
+	const insertMsg = (element, msg, color) => {
+		$(element).text(msg).css('color', color);
 	};
 	
 	const validatePwLength = (element) => {
@@ -135,10 +146,8 @@
 			msg = ' 4자 이상!';
 			color = 'red';
 			insertMsg($(element).next(), msg, color);
-			return false;
 		}
 		insertMsg($(element).next(), msg, color);
-		return true;
 	};
 	
 	const validatePwCorrectness = (element) => {
@@ -149,10 +158,8 @@
 			msg = ' 불일치';
 			color = 'red';
 			insertMsg($(element).next(), msg, color);
-			return false;
 		} 
 		insertMsg($(element).next(), msg, color);
-		return true;
 	};
 </script>
 <%@ include file="/views/common/footer.jsp" %>

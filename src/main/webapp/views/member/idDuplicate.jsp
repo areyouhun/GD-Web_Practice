@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.web.member.model.dto.Member" %>
 <%
-	Object obj = request.getAttribute("result");
-	Member member = null;
-
-	if (obj != null && obj instanceof Member) {
-		member = Member.class.cast(obj);
-	}
+	Object result = request.getAttribute("result");
 %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +28,7 @@
 </head>
 <body>
 	<div id="checkId-container">
-		<% if (member != null) { %>
+		<% if (result != null) { %>
 			<span id="duplicated"><%= request.getParameter("userId") %></span>는 사용중입니다.<br><br>
 			<form action="<%=request.getRequestURI()%>">
 				<input type="text" name="userId" id="userId"> 
@@ -46,8 +41,8 @@
 	</div>
 	<script>
 		const confirmId = () => {
-			// 이 페이지는 jQuery 파일 없음
-			window.opener.document.getElementById('idToUse').value = "<%=request.getParameter("userId")%>";
+			window.opener.document.getElementById('idToUse').setAttribute('duplicate', 'false');
+			window.opener.document.getElementById('idToUse').value = "<%= request.getParameter("userId") %>";
 			window.close();
 		}
 	</script>
