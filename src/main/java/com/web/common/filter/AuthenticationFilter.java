@@ -28,13 +28,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 	{
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		Object obj = session.getAttribute("memberLoggedIn");
-//		Member memberLoggedIn = null;
 		
-//		if (obj != null) {
-//			memberLoggedIn = Member.class.cast(obj);
-//		}
-		
-//		if (memberLoggedIn == null || !memberLoggedIn.getUserId().equals(request.getParameter("userId"))) {
 		if (obj == null) {
 			System.out.println(request.getParameter("userId"));
 			request.setAttribute("msg", "잘못된 접근입니다!");

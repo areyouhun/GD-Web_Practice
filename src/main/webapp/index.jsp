@@ -8,6 +8,10 @@ section {
 	text-align: center;
 	height: 600px;
 }
+
+.nav-link:visited {
+	color: white;
+}
 </style>
 </head>
 <body>

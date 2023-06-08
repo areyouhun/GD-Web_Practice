@@ -27,21 +27,21 @@
 				<tr>
 					<th>아이디</th>
 					<td>
-						<input type="text" placeholder="4글자이상" name="userId" id="idToUse"> 
-						<input type="button" value="중복확인" onclick="validateDuplication();" class="btn btn-secondary py-1">
+						<input type="text" placeholder="4글자이상" name="userId" id="idToUse" duplicate="true"> 
+						<input type="button" value="중복확인" onclick="validateIdDuplication();" class="btn btn-secondary py-1">
 					</td>
 				</tr>
 				<tr>
 					<th>패스워드</th>
 					<td style="position: relative">
-						<input type="password" name="password" id="passwordToUse" onkeyup="validatePwToUse(this);">
+						<input type="password" name="password" id="passwordToUse" onkeyup="validatePwLength(this);">
 						<span class="warning-absolute"></span>
 					</td>
 				</tr>
 				<tr>
 					<th>패스워드 확인</th>
 					<td style="position: relative">
-						<input type="password" id="passwordToConfirm" onkeyup="validatePwToConfirm(this);">
+						<input type="password" id="passwordToConfirm" onkeyup="validatePwCorrectness(this);">
 						<span class="warning-absolute"></span>
 					</td>
 				</tr>
@@ -90,68 +90,76 @@
 				</tr>
 			</table>
 			<div class="d-flex justify-content-center">
-				<input type="submit" value="가입" onclick="return validateEnrollment();" class="btn btn-dark mx-1">
+				<input type="submit" value="가입" onclick="return isAllValid();" class="btn btn-dark mx-1">
 				<input type="reset" value="취소" class="btn btn-dark mx-1">
 			</div>
 		</form>
 	</section>
 <script>
-	const userIdToUse = $('#idToUse');
-	let isIdValid = false;
-	let isPwValid = false;
-
-	const insertMsg = (selector, msg, color) => {
-		$(selector).text(msg).css('color', color);
-	};
-	
-	function setIdValid() {
-		isIdValid = true;
-	}
-	
-	const validateEnrollment = () => {
-		if (isIdValid == false || isPwValid == false) {
-			alert('필수 입력 조건을 통과하지 못했습니다.');
+	const isAllValid = () => {
+		const idToUse = $('#idToUse');
+		const passwordToUse = $('#passwordToUse').val();
+		const passwordToConfirm = $('passwordToConfirm').val();
+		
+		if (idToUse.val().length < 4) {
+			alert('아이디는 4글자 이상 입력하세요.');
+			return false;
+		}
+		
+		if (idToUse.attr('duplicate') == 'true') {
+			alert('아이디 중복 검사를 통과하지 못 했습니다.');
+			return false;
+		}
+		
+		if (passwordToUse.length < 4) {
+			alert('비밀번호는 4글자 이상 입력하세요.');
+			return false;
+		}
+		
+		if (passwordToUse !== passwordToConfirm) {
+			alert('입력한 비밀번호가 일치하지 않습니다.');
 			return false;
 		}
 	};
 	
-	const validateDuplication = () => {
-		if (userIdToUse.val().length < 4) {
+	const validateIdDuplication = () => {
+		if ($('#idToUse').val().length < 4) {
 			alert('아이디는 4글자 이상 입력하세요.');
-			userIdToUse.focus();
-		} else {
-			window.open("<%= request.getContextPath() %>/member/idDuplicate.do?userId=" + userIdToUse.val(), 
-					"_blank",
-					"width=300, height=200, left=200, top=200");
-		}
+			$('#idToUse').focus();
+			return;
+		} 
+		
+		window.open('<%= request.getContextPath() %>/member/idDuplicate.do?userId=' + $('#idToUse').val(), 
+					'_blank',
+					'width=300, height=200, left=200, top=200');
 	};
 	
-	const validatePwToUse = (selector) => {
+	const insertMsg = (element, msg, color) => {
+		$(element).text(msg).css('color', color);
+	};
+	
+	const validatePwLength = (element) => {
 		let color = '';
 		let msg = '';
 		
-		if ($(selector).val().length < 4) {
+		if ($(element).val().length < 4) {
 			msg = ' 4자 이상!';
 			color = 'red';
-			isPwValid = false;
-		} else {
-			isPwValid = true;
+			insertMsg($(element).next(), msg, color);
 		}
-		insertMsg($(selector).next(), msg, color);
+		insertMsg($(element).next(), msg, color);
 	};
 	
-	const validatePwToConfirm = (selector) => {
+	const validatePwCorrectness = (element) => {
 		let msg = ' 일치';
 		let color = 'green';
 		
-		if ($(selector).val() != $('#passwordToUse').val()) {
+		if ($(element).val() != $('#passwordToUse').val()) {
 			msg = ' 불일치';
 			color = 'red';
-			isPwValid = false;
-		} else {
-			isPwValid = true;
-		}
-		insertMsg($(selector).next(), msg, color);
+			insertMsg($(element).next(), msg, color);
+		} 
+		insertMsg($(element).next(), msg, color);
 	};
 </script>
 <%@ include file="/views/common/footer.jsp" %>
