@@ -23,7 +23,7 @@ public class MemberListServlet extends HttpServlet {
 	{
 		// 페이징
 		int totalData = new AdminService().selectMemberCount();
-		int dataPerPage = 5;
+		int dataPerPage = 10;
 		int totalPages = (int) Math.ceil((double) totalData / dataPerPage);
 		
 		int currentPage;

@@ -34,14 +34,14 @@
 				<tr>
 					<th>패스워드</th>
 					<td style="position: relative">
-						<input type="password" name="password" id="passwordToUse" onkeyup="validatePwToUse(this);">
+						<input type="password" name="password" id="passwordToUse" onkeyup="validatePwLength(this);">
 						<span class="warning-absolute"></span>
 					</td>
 				</tr>
 				<tr>
 					<th>패스워드 확인</th>
 					<td style="position: relative">
-						<input type="password" id="passwordToConfirm" onkeyup="validatePwToConfirm(this);">
+						<input type="password" id="passwordToConfirm" onkeyup="validatePwCorrectness(this);">
 						<span class="warning-absolute"></span>
 					</td>
 				</tr>
@@ -96,26 +96,23 @@
 		</form>
 	</section>
 <script>
-	const userIdToUse = $('#idToUse');
-	let isIdValid = false;
-	let isPwValid = false;
-
-	const insertMsg = (selector, msg, color) => {
-		$(selector).text(msg).css('color', color);
+	const insertMsg = (element, msg, color) => {
+		$(element).text(msg).css('color', color);
 	};
 	
-	function setIdValid() {
-		isIdValid = true;
-	}
-	
 	const validateEnrollment = () => {
-		if (isIdValid == false || isPwValid == false) {
+		if (validatePw() != true) {
 			alert('필수 입력 조건을 통과하지 못했습니다.');
 			return false;
 		}
 	};
 	
+	// 아이디 검사는 클래스로 만들어서 해보기
+	
 	const validateDuplication = () => {
+		const userIdToUse = $('#idToUse');
+		let isIdValid = false;
+		
 		if (userIdToUse.val().length < 4) {
 			alert('아이디는 4글자 이상 입력하세요.');
 			userIdToUse.focus();
@@ -126,32 +123,36 @@
 		}
 	};
 	
-	const validatePwToUse = (selector) => {
+	const validatePw = () => {
+		return (validatePwLength('#passwordToUse') && validatePwCorrectness('#passwordToConfirm'));
+	};
+	
+	const validatePwLength = (element) => {
 		let color = '';
 		let msg = '';
 		
-		if ($(selector).val().length < 4) {
+		if ($(element).val().length < 4) {
 			msg = ' 4자 이상!';
 			color = 'red';
-			isPwValid = false;
-		} else {
-			isPwValid = true;
+			insertMsg($(element).next(), msg, color);
+			return false;
 		}
-		insertMsg($(selector).next(), msg, color);
+		insertMsg($(element).next(), msg, color);
+		return true;
 	};
 	
-	const validatePwToConfirm = (selector) => {
+	const validatePwCorrectness = (element) => {
 		let msg = ' 일치';
 		let color = 'green';
 		
-		if ($(selector).val() != $('#passwordToUse').val()) {
+		if ($(element).val() != $('#passwordToUse').val()) {
 			msg = ' 불일치';
 			color = 'red';
-			isPwValid = false;
-		} else {
-			isPwValid = true;
-		}
-		insertMsg($(selector).next(), msg, color);
+			insertMsg($(element).next(), msg, color);
+			return false;
+		} 
+		insertMsg($(element).next(), msg, color);
+		return true;
 	};
 </script>
 <%@ include file="/views/common/footer.jsp" %>

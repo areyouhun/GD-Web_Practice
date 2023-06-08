@@ -48,7 +48,6 @@
 		const confirmId = () => {
 			// 이 페이지는 jQuery 파일 없음
 			window.opener.document.getElementById('idToUse').value = "<%=request.getParameter("userId")%>";
-			window.opener.setIdValid();
 			window.close();
 		}
 	</script>
