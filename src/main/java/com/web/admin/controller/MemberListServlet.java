@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.admin.service.AdminService;
+import com.web.common.PageBarGenerator;
 import com.web.member.model.dto.Member;
 
 @WebServlet("/admin/memberList.do")
 public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final int DEFAULT_CURRENT_PAGE = 1;
+	private static final int DEFAULT_NUM_PER_PAGE = 5;
        
     public MemberListServlet() {}
 
@@ -22,48 +25,30 @@ public class MemberListServlet extends HttpServlet {
 			throws ServletException, IOException 
 	{
 		// 페이징
-		int totalData = new AdminService().selectMemberCount();
-		int dataPerPage = 10;
-		int totalPages = (int) Math.ceil((double) totalData / dataPerPage);
+		int currentPage = PageBarGenerator.toInteger(request.getParameter("currentPage"), 
+													DEFAULT_CURRENT_PAGE);
+		int numPerPage = PageBarGenerator.toInteger(request.getParameter("numPerPage"), 
+													DEFAULT_NUM_PER_PAGE);
 		
-		int currentPage;
-		try {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		} catch (NumberFormatException e) {
-			currentPage = 1;
-		}
-		
-		int pageBarSize = 5;
-		int pageStartNo = ((currentPage - 1) / pageBarSize) * pageBarSize + 1;
-		int pageEndNo = pageStartNo + pageBarSize - 1;
-		
-		StringBuilder pageBar = new StringBuilder();
-		
-		if (pageStartNo == 1) {
-			pageBar.append("<span class='prev'>[이전]</span>");
-		} else {
-			pageBar.append(String.format("<a href='%s?currentPage=%d' class='prev'>[이전]</a>", request.getRequestURI(), (pageStartNo - 1)));
-		}
-		
-		while (pageStartNo <= pageEndNo && pageStartNo <= totalPages) {
-			if (pageStartNo == currentPage) {
-				pageBar.append(String.format("<span class='fw-bolder'>%d</span>", pageStartNo));
-			} else {
-				pageBar.append(String.format("<a href='%s?currentPage=%d'>%d</a>", request.getRequestURI(), pageStartNo, pageStartNo));
-			}
-			pageStartNo++;
-		}
-		
-		if (pageStartNo > totalPages) {
-			pageBar.append("<span class='next'>[다음]</span>");
-		} else {
-			pageBar.append(String.format("<a href='%s?currentPage=%d' class='next'>[다음]</a>", request.getRequestURI(), pageStartNo));
-		}
+		PageBarGenerator pbg = new PageBarGenerator.Builder()
+				.uri(request.getRequestURI())
+				.currentPage(currentPage)
+				.numPerPage(numPerPage)
+				.totalData(new AdminService().selectMemberCount())
+				.pageBarSize(5)
+				.build();
 				
-		// 회원정보 받아오기
-		List<Member> members = new AdminService().selectMemberAll(currentPage, dataPerPage);
+		StringBuilder pageBar = new StringBuilder();
+		pageBar.append(pbg.getBtnToFirst());
+		pageBar.append(pbg.getPrevBtn());
+		pageBar.append(pbg.getPageBtn());
+		pageBar.append(pbg.getNextBtn());
+		pageBar.append(pbg.getBtnToLast());
+		
+		List<Member> members = new AdminService().selectMemberAll(currentPage, numPerPage);
 		
 		// 최종 전달
+		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar.toString());
 		request.setAttribute("members", members);
 		request.getRequestDispatcher("/views/admin/memberManagement.jsp").forward(request, response);

@@ -68,7 +68,7 @@
 				<a class="nav-link" href="#">HOME</a>
 			</li>
 			<li class="nav-item fw-bolder mx-5">
-				<a class="nav-link" href="#">공지사항</a>
+				<a class="nav-link" href="<%= request.getContextPath() %>/notice/noticeList.do">공지사항</a>
 			</li>
 			<li class="nav-item fw-bolder mx-5">
 				<a class="nav-link" href="#">게시판</a>

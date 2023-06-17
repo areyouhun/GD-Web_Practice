@@ -24,10 +24,19 @@ public class AdminService {
 		return count;
 	}
 
-	public List<Member> selectMemberByKeyword(String type, String keyword) {
+	public List<Member> selectMemberByKeyword(String type, String keyword, 
+											int currentPage, int numPerPage) {
 		Connection conn = JDBCTemplate.getConnection();
-		List<Member> members = adminDao.selectMemberByKeyword(conn, type, keyword);
+		List<Member> members = adminDao.selectMemberByKeyword(conn, type, keyword, 
+															currentPage, numPerPage);
 		JDBCTemplate.close(conn);
 		return members;
+	}
+	
+	public int selectMemberByKeywordCount(String type, String keyword) {
+		Connection conn = JDBCTemplate.getConnection();
+		int count = adminDao.selectMemberByKeywordCount(conn, type, keyword);
+		JDBCTemplate.close(conn);
+		return count;
 	}
 }

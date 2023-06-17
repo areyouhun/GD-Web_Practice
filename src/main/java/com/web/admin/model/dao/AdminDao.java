@@ -67,15 +67,18 @@ public class AdminDao {
 		return count;
 	}
 
-	public List<Member> selectMemberByKeyword(Connection conn, String type, String keyword) {
+	public List<Member> selectMemberByKeyword(Connection conn, String type, String keyword, int currentPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Member> members = new ArrayList<>();
-		final String query = sql.getProperty("selectMemberByKeyword").replace("#COL", type);
+		String query = sql.getProperty("selectMemberByKeyword")
+						.replace("#COL", type);
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, keyword.equals("gender") ? keyword : "%" + keyword + "%");
+			pstmt.setString(1, type.equals("gender") ? keyword : "%" + keyword + "%");
+			pstmt.setInt(2, (currentPage * numPerPage) - numPerPage + 1);
+			pstmt.setInt(3, currentPage * numPerPage);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -90,4 +93,26 @@ public class AdminDao {
 		return members;
 	}
 
+	public int selectMemberByKeywordCount(Connection conn, String type, String keyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		String query = sql.getProperty("selectMemberByKeywordCount")
+						.replace("#COL", type);
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, type.equals("gender") ? keyword : "%" + keyword + "%");
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return count;
+	}
 }
