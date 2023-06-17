@@ -1,6 +1,7 @@
 package com.web.notice.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.web.notice.model.dto.Notice;
 
 @WebServlet("/notice/noticeInsertEnd.do")
 public class NoticeInsertEndServlet extends HttpServlet {
@@ -48,6 +50,33 @@ public class NoticeInsertEndServlet extends HttpServlet {
 		
 		// 객체 생성과 동시에 지정된 위치에 업로드한 파일 저장
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, dfrp);
+		
+		// 나머지 request에 바인딩된 데이터 처리하기
+		// String noticeTitle = mr.getParameter("noticeTitle");
+		// String noticeWriter = mr.getParameter("noticeWriter");
+		// String noticeContent = mr.getParameter("noticeContent");
+		// String OriginalFileName = mr.getOriginalFileName("upFile");
+		// String fileRename = mr.getFilesystemName("upFile");
+		
+		Notice notice = Notice.builder()
+								.noticeTitle(mr.getParameter("noticeTitle"))
+								.noticeWriter(mr.getParameter("noticeWriter"))
+								.noticeContent(mr.getParameter("noticeContent"))
+								.filePath(mr.getFilesystemName("upFile"))
+								.build();
+		
+		int result new NoticeServie().insertNotice(notice);
+		String msg = "공지사항 등록 완료";
+		String loc = "/notice/noticeList.do";
+
+		if (result == 0) {
+			msg = "공지사항 등록 실패";
+			loc = "/notice/insertForm.do";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
