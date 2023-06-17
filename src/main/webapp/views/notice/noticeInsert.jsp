@@ -48,7 +48,7 @@ table#tbl-notice td {
 	<%@ include file="/views/common/header.jsp" %>
 	<section id="notice-container" class="d-flex-column justify-content-center align-items-center">
 		<h2 class="mt-5">공지사항 작성</h2>
-		<form action="<%= request.getContextPath() %>/notice/noticeInsert.do" 
+		<form action="<%= request.getContextPath() %>/notice/noticeInsertEnd.do" 
 				method="post" enctype="multipart/form-data">
 			<table id="tbl-notice">
 				<tr>
