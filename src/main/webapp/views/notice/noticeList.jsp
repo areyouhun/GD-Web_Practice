@@ -81,7 +81,9 @@ table#tbl-notice th, table#tbl-notice td {
 				for (Notice notice : notices) { %>
 					<tr>
 						<td><%= notice.getNoticeNo() %></td>
-						<td><%= notice.getNoticeTitle() %></td>
+						<td>
+							<a href="<%= request.getContextPath() %>/notice/noticeView.do?no=<%=notice.getNoticeNo() %>"><%= notice.getNoticeTitle() %></a>
+						</td>
 						<td><%= notice.getNoticeWriter() %></td>
 						<td>
 							<% if(notice.getFilePath() != null) { %>

@@ -41,4 +41,11 @@ public class NoticeService {
 		return result;
 	}
 
+	public Notice selectNoticeByNo(int no) {
+		Connection conn = JDBCTemplate.getConnection();
+		Notice notice = noticeDao.selectNoticeByNo(conn, no);
+		JDBCTemplate.close(conn);
+		return notice;
+	}
+
 }

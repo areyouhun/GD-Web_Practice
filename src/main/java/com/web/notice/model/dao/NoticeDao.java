@@ -86,6 +86,28 @@ private static final String SQL_PATH = "/sql/notice/notice_sql.properties";
 		}
 		return result;
 	}
+	
+	public Notice selectNoticeByNo(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Notice notice = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectNoticeByNo"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				notice = getNoticeBy(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return notice;
+	}
 
 	private Notice getNoticeBy(ResultSet rs) throws SQLException {
 		return Notice.builder()
