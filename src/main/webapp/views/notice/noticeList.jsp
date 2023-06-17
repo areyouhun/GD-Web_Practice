@@ -47,12 +47,23 @@ table#tbl-notice th, table#tbl-notice td {
 	padding: 5px 0;
 	text-align: center;
 }
+
+.notice-container_btn {
+	display: flex;
+	justify-content: end;
+}
 </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp" %>
 	<section id="notice-container">
         <h2>공지사항</h2>
+        <div class="notice-container_btn mb-3">
+        	<% if (memberLoggedIn != null && memberLoggedIn.getUserId().equals("admin")) { %>
+	        	<button class="btn btn-dark" 
+	        			onclick="location.assign('<%= request.getContextPath() %>/notice/insertForm.do')">글쓰기</button>
+        	<% } %>
+        </div>
         <table id="tbl-notice">
             <tr>
             
