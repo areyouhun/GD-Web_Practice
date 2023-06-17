@@ -125,7 +125,7 @@ public class PageBarGenerator {
 			return BTN_TO_FIRST_UNACTIVE;
 		}
 		return String.format(BTN_TO_FIRST_ACTIVE, 
-									uri + "?currentPage=" + 1
+									uri + changeSymbol("?currentPage=", uri) + 1
 										+ "&numPerPage=" + numPerPage);
 	}
 	
@@ -134,7 +134,7 @@ public class PageBarGenerator {
 			return PREV_BTN_UNACTIVE;
 		} else {
 			return String.format(PREV_BTN_ACTIVE, 
-										uri + "?currentPage=" + (pageStartNo - 1) 
+										uri + changeSymbol("?currentPage=", uri) + (pageStartNo - 1) 
 											+ "&numPerPage=" + numPerPage);
 		}
 	}
@@ -148,8 +148,9 @@ public class PageBarGenerator {
 				pageBtn.append(String.format(PAGE_BTN_UNACTIVE, pageStartNo));
 			} else {
 				pageBtn.append(String.format(PAGE_BTN_ACTIVE, 
-													uri + "?currentPage=" + pageStartNo
-														+ "&numPerPage=" + numPerPage, 
+											uri + changeSymbol("?currentPage=", uri) 
+											+ pageStartNo
+											+ "&numPerPage=" + numPerPage, 
 											pageStartNo));
 			}
 			pageStartNo++;
@@ -162,7 +163,7 @@ public class PageBarGenerator {
 			return NEXT_BTN_UNACTIVE;
 		}
 		return String.format(NEXT_BTN_ACTIVE, 
-									uri + "?currentPage=" + pageStartNo 
+									uri + changeSymbol("?currentPage=", uri) + pageStartNo 
 										+ "&numPerPage=" + numPerPage);
 	}
 	
@@ -171,7 +172,14 @@ public class PageBarGenerator {
 			return BTN_TO_LAST_UNACTIVE;
 		}
 		return String.format(BTN_TO_LAST_ACTIVE, 
-									uri + "?currentPage=" + totalPages
+									uri + changeSymbol("?currentPage=", uri) + totalPages
 										+ "&numPerPage=" + numPerPage);
+	}
+	
+	private String changeSymbol(String querystring, String uri) {
+		if (uri.contains("?")) {
+			return querystring.replace("?", "&");
+		}
+		return querystring;
 	}
 }
