@@ -66,6 +66,26 @@ private static final String SQL_PATH = "/sql/notice/notice_sql.properties";
 		}
 		return count;
 	}
+	
+	public int insertNotice(Connection conn, Notice notice) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("insertNotice"));
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeWriter());
+			pstmt.setString(3, notice.getNoticeContent());
+			pstmt.setString(4, notice.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
 	private Notice getNoticeBy(ResultSet rs) throws SQLException {
 		return Notice.builder()

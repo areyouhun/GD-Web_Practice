@@ -13,6 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.web.notice.model.dto.Notice;
+import com.web.notice.service.NoticeService;
 
 @WebServlet("/notice/noticeInsertEnd.do")
 public class NoticeInsertEndServlet extends HttpServlet {
@@ -65,7 +66,8 @@ public class NoticeInsertEndServlet extends HttpServlet {
 								.filePath(mr.getFilesystemName("upFile"))
 								.build();
 		
-		int result new NoticeServie().insertNotice(notice);
+		int result = new NoticeService().insertNotice(notice);
+		
 		String msg = "공지사항 등록 완료";
 		String loc = "/notice/noticeList.do";
 

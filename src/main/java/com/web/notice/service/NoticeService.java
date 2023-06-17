@@ -28,4 +28,17 @@ public class NoticeService {
 		return count;
 	}
 
+	public int insertNotice(Notice notice) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = noticeDao.insertNotice(conn, notice);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
 }
