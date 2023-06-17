@@ -39,7 +39,7 @@ public class SearchMemberServlet extends HttpServlet {
 				.currentPage(currentPage)
 				.numPerPage(numPerPage)
 				.totalData(new AdminService().selectMemberByKeywordCount(type, keyword))
-				.pageBarSize(numPerPage)
+				.pageBarSize(5)
 				.build();
 				
 		StringBuilder pageBar = new StringBuilder();
@@ -52,6 +52,7 @@ public class SearchMemberServlet extends HttpServlet {
 		List<Member> members = new AdminService().selectMemberByKeyword(type, keyword, 
 																		currentPage, numPerPage);
 		
+		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar.toString());
 		request.setAttribute("members", members);
 		request.getRequestDispatcher("/views/admin/memberManagement.jsp").forward(request, response);

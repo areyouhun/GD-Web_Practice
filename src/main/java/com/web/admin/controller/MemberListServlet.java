@@ -35,7 +35,7 @@ public class MemberListServlet extends HttpServlet {
 				.currentPage(currentPage)
 				.numPerPage(numPerPage)
 				.totalData(new AdminService().selectMemberCount())
-				.pageBarSize(numPerPage)
+				.pageBarSize(5)
 				.build();
 				
 		StringBuilder pageBar = new StringBuilder();
@@ -48,6 +48,7 @@ public class MemberListServlet extends HttpServlet {
 		List<Member> members = new AdminService().selectMemberAll(currentPage, numPerPage);
 		
 		// 최종 전달
+		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar.toString());
 		request.setAttribute("members", members);
 		request.getRequestDispatcher("/views/admin/memberManagement.jsp").forward(request, response);
