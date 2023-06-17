@@ -16,8 +16,6 @@ import com.web.member.model.dto.Member;
 @WebServlet("/admin/searchMember")
 public class SearchMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final int DEFAULT_CURRENT_PAGE = 1;
-	private static final int DEFAULT_NUM_PER_PAGE = 5;
        
     public SearchMemberServlet() {}
 
@@ -27,9 +25,9 @@ public class SearchMemberServlet extends HttpServlet {
 		String type = request.getParameter("searchType");	
 		String keyword = request.getParameter("searchKeyword");	
 		int currentPage = PageBarGenerator.toInteger(request.getParameter("currentPage"), 
-													DEFAULT_CURRENT_PAGE);
+													PageBarGenerator.DEFAULT_CURRENT_PAGE);
 		int numPerPage = PageBarGenerator.toInteger(request.getParameter("numPerPage"), 
-													DEFAULT_NUM_PER_PAGE);
+													PageBarGenerator.DEFAULT_NUM_PER_PAGE);
 		final String uri = request.getRequestURI()
 							+ "?searchType=" + type
 							+ "&searchKeyword=" + keyword;

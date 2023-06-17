@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageBarGenerator {
+	public static final int DEFAULT_CURRENT_PAGE = 1;
+	public static final int DEFAULT_NUM_PER_PAGE = 5;
+	
 	// context 또는 파일로 불러오기
 	private static final String BTN_TO_FIRST_UNACTIVE = "<span>[처음]</span>";
 	private static final String BTN_TO_FIRST_ACTIVE = "<a href='%s'>[처음]</a>";
@@ -16,11 +19,11 @@ public class PageBarGenerator {
 	private static final String BTN_TO_LAST_ACTIVE = "<a href='%s'>[마지막]</a>";
 	private static final String BTN_TO_LAST_UNACTIVE = "<span>[마지막]</span>";
 	
-	public static final int INDEX_TO_FIRST = 0;
-	public static final int INDEX_TO_PREV = 1;
-	public static final int INDEX_TO_PAGE_NO = 2;
-	public static final int INDEX_TO_NEXT = 3;
-	public static final int INDEX_TO_LAST = 4;
+	private static final int INDEX_TO_FIRST = 0;
+	private static final int INDEX_TO_PREV = 1;
+	private static final int INDEX_TO_PAGE_NO = 2;
+	private static final int INDEX_TO_NEXT = 3;
+	private static final int INDEX_TO_LAST = 4;
 	
 	private String uri;
 	private int currentPage;

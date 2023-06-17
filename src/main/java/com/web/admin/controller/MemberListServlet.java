@@ -16,8 +16,6 @@ import com.web.member.model.dto.Member;
 @WebServlet("/admin/memberList.do")
 public class MemberListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final int DEFAULT_CURRENT_PAGE = 1;
-	private static final int DEFAULT_NUM_PER_PAGE = 5;
        
     public MemberListServlet() {}
 
@@ -26,9 +24,9 @@ public class MemberListServlet extends HttpServlet {
 	{
 		// 페이징
 		int currentPage = PageBarGenerator.toInteger(request.getParameter("currentPage"), 
-													DEFAULT_CURRENT_PAGE);
+													PageBarGenerator.DEFAULT_CURRENT_PAGE);
 		int numPerPage = PageBarGenerator.toInteger(request.getParameter("numPerPage"), 
-													DEFAULT_NUM_PER_PAGE);
+													PageBarGenerator.DEFAULT_NUM_PER_PAGE);
 		
 		PageBarGenerator pbg = new PageBarGenerator.Builder()
 				.uri(request.getRequestURI())
