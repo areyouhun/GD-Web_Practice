@@ -1,6 +1,7 @@
 package com.web.board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.web.board.model.dto.Board;
+import com.web.board.model.dto.BoardComment;
 import com.web.board.service.BoardService;
 
 @WebServlet("/board/boardView.do")
@@ -50,10 +52,12 @@ public class BoardViewServlet extends HttpServlet {
 		}
 		
 		Board board = new BoardService().selectBoardByNo(currentBoardNo, isRead);
+		List<BoardComment> boardComments = new BoardService().selectBoardCommentByBoardNo(currentBoardNo);
 		
 		String destination = "/views/board/boardView.jsp";
 		if (board != null) {
 			request.setAttribute("board", board);
+			request.setAttribute("boardComments", boardComments);
 		} else {
 			destination = "/views/common/msg.jsp";
 			request.setAttribute("msg", "존재하지 않는 게시물입니다");

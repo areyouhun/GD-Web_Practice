@@ -132,6 +132,28 @@ public class BoardDao {
 		}
 		return result;
 	}
+	
+	public List<BoardComment> selectBoardCommentByBoardNo(Connection conn, int currentBoardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BoardComment> boardComments = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectBoardCommentByBoardNo"));
+			pstmt.setInt(1, currentBoardNo);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				boardComments.add(getBoardCommentBy(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return boardComments;
+	}
 
 	private Board getBoardBy(ResultSet rs) throws SQLException {
 		return Board.builder()
@@ -144,5 +166,17 @@ public class BoardDao {
 				.boardDate(rs.getDate("BOARD_DATE"))
 				.boardReadCount(rs.getInt("BOARD_READCOUNT"))
 				.build();
+	}
+	
+	private BoardComment getBoardCommentBy(ResultSet rs) throws SQLException {
+		return BoardComment.builder()
+						.boardCommentNo(rs.getInt("BOARD_COMMENT_NO"))
+						.level(rs.getInt("BOARD_COMMENT_LEVEL"))
+						.boardCommentWriter(rs.getString("BOARD_COMMENT_WRITER"))
+						.boardCommentContent(rs.getString("BOARD_COMMENT_CONTENT"))
+						.boardCommentDate(rs.getDate("BOARD_COMMENT_DATE"))
+						.boardCommentRef(rs.getInt("BOARD_COMMENT_REF"))
+						.boardRef(rs.getInt("BOARD_REF"))
+						.build();
 	}
 }

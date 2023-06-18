@@ -1,20 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.web.board.model.dto.Board" %>
+<%@ page import="java.util.List, java.util.ArrayList, com.web.board.model.dto.Board, com.web.board.model.dto.BoardComment"%>
 <%@ include file="/views/common/head.jsp" %>
 <%
 	Object boardUncast = request.getAttribute("board");
 	Board board = null;
-
+	
 	if (boardUncast != null & boardUncast instanceof Board) {
 		board = Board.class.cast(boardUncast);
+	}
+	
+	Object boardCommentsUncast = request.getAttribute("boardComments");
+	List<BoardComment> boardComments = new ArrayList<>();
+	
+	if (boardCommentsUncast != null && boardCommentsUncast instanceof ArrayList<?>) {
+		for (Object boardCommentUncast : (List<?>) boardCommentsUncast) {
+			boardComments.add(BoardComment.class.cast(boardCommentUncast));
+		}
 	}
 %>
 <title>main page</title>
 <style>
 section {
 	text-align: center;
-	height: 600px;
 }
 
 .nav-link:visited {
@@ -55,8 +63,8 @@ table#tbl-board td {
 background-color:#3300FF;position:relative;top:-20px;}
     /*댓글테이블*/
 table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
-table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
-table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
+table#tbl-comment tr td{padding:5px; text-align:left; line-height:120%;}
+table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 5px;}
 table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
 table#tbl-comment button.btn-reply{display:none;}
 table#tbl-comment button.btn-delete{display:none;}
@@ -130,6 +138,35 @@ table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; backg
 				</form>
 			</div>
 		</div>
+		<table id="tbl-comment" style="width: 500px; margin: 20px auto 0 auto;">
+	<% if (boardComments.isEmpty()) { %>
+		<tr class="level1">
+			<td>
+				등록된 댓글이 없습니다.
+			</td>
+		</tr>
+	<% } else { 
+		for (BoardComment boardComment : boardComments) { %>
+		<tr class="level1">
+			<td>
+				<sub class="comment-writer"><%= boardComment.getBoardCommentWriter() %></sub>
+				<sub class="comment-date"><%= boardComment.getBoardCommentDate() %></sub>
+				<br>
+				<p><%= boardComment.getBoardCommentContent() %></p>
+			</td>
+			<td>
+				<button class="btn-reply">답글</button>
+				<% if (memberLoggedIn != null 
+					&& (memberLoggedIn.getUserId().equals("admin") || memberLoggedIn.getUserId().equals(boardComment.getBoardCommentWriter()))
+				) { %>
+					<button class="btn-reply">수정</button>
+					<button class="btn-reply">삭제</button>
+				<% } %>
+			</td>
+		</tr>
+	<% }
+	} %>
+	</table>
 	</section>
 <script>
 const checkIfLoggedIn = () => {

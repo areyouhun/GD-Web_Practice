@@ -76,4 +76,11 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public List<BoardComment> selectBoardCommentByBoardNo(int currentBoardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		List<BoardComment> boardComments = boardDao.selectBoardCommentByBoardNo(conn, currentBoardNo);
+		JDBCTemplate.close(conn);
+		return boardComments;
+	}
 }
