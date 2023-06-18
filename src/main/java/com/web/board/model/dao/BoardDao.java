@@ -61,8 +61,22 @@ public class BoardDao {
 	}
 
 	public Board selectBoardByNo(Connection conn, int no) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Board board = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("selectBoardByNo"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				board = getBoardBy(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return board;
 	}
 
 	public int insertBoard(Connection conn, Board board) {

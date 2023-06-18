@@ -57,11 +57,11 @@ input#btn-add {
 div#pageBar {
 	margin-top: 10px;
 	text-align: center;
-	background-color: rgba(0, 188, 212, 0.3);
 }
 
-div#pageBar span.cPage {
-	color: #0066ff;
+#pageBar a {
+	color: black;
+	text-decoration: none;
 }
 </style>
 
