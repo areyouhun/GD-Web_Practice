@@ -22,8 +22,11 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
-		int currentPage = PageBarGenerator.toInteger(request.getParameter("currentPage"), PageBarGenerator.DEFAULT_CURRENT_PAGE);
-		int numPerPage = PageBarGenerator.toInteger(request.getParameter("numPerPage"), PageBarGenerator.DEFAULT_NUM_PER_PAGE);
+		System.out.println(request.getRequestURI());
+		int currentPage = PageBarGenerator.toInteger(request.getParameter("currentPage"), 
+													PageBarGenerator.DEFAULT_CURRENT_PAGE);
+		int numPerPage = PageBarGenerator.toInteger(request.getParameter("numPerPage"), 
+													PageBarGenerator.DEFAULT_NUM_PER_PAGE);
 		
 		PageBarGenerator pbg = new PageBarGenerator.Builder()
 												.uri(request.getRequestURI())
