@@ -76,7 +76,7 @@ table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; backg
 </head>
 <body>
 <%@ include file="/views/common/header.jsp" %>
-	<section id="board-container">
+	<section id="board-container" class="mt-5">
 		<h2>게시판</h2>
 		<table id="tbl-board">
 			<tr>
@@ -119,7 +119,7 @@ table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; backg
 			<div class="comment-editor">
 				<form action="<%= request.getContextPath() %>/board/insertComment.do" onsubmit="return checkIfLoggedIn()" method="post"
 					class="px-5 mt-3 d-flex flex-column align-items-end">
-					<input type="hidden" name="boardCommentWriter" value="<%= memberLoggedIn.getUserId() != null ? memberLoggedIn.getUserId() : "" %>">
+					<input type="hidden" name="boardCommentWriter" value="<%= memberLoggedIn != null ? memberLoggedIn.getUserId() : "" %>">
 					<input type="hidden" name="boardRef" value="<%= board.getBoardNo() %>">
 					<input type="hidden" name="boardCommentRef" value="0">
 					<input type="hidden" name="level" value="1">

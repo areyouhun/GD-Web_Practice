@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.web.board.model.dao.BoardDao;
 import com.web.board.model.dto.Board;
+import com.web.board.model.dto.BoardComment;
 import com.web.common.JDBCTemplate;
 
 public class BoardService {
@@ -53,6 +54,19 @@ public class BoardService {
 	public int insertBoard(Board board) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = boardDao.insertBoard(conn, board);
+		
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int insertBoardComment(BoardComment bc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = boardDao.insertBoardComment(conn, bc);
 		
 		if (result > 0) {
 			JDBCTemplate.commit(conn);

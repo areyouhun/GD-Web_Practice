@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.web.board.model.dto.Board;
+import com.web.board.model.dto.BoardComment;
 import com.web.common.JDBCTemplate;
 import com.web.common.PropertiesGenerator;
 import com.web.member.service.MemberService;
@@ -109,6 +110,27 @@ public class BoardDao {
 	public int insertBoard(Connection conn, Board board) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public int insertBoardComment(Connection conn, BoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("insertBoardComment"));
+			pstmt.setInt(1, bc.getLevel());
+			pstmt.setString(2, bc.getBoardCommentWriter());
+			pstmt.setString(3, bc.getBoardCommentContent());
+			pstmt.setInt(4, bc.getBoardRef());
+			pstmt.setString(5, bc.getBoardCommentRef() == 0 ? null : String.valueOf(bc.getBoardCommentRef()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 	private Board getBoardBy(ResultSet rs) throws SQLException {
