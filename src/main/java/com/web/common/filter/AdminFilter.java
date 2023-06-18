@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.web.member.model.dto.Member;
 
-@WebFilter("/admin/*")
+@WebFilter(urlPatterns= {"/admin/*", "/notice/insertForm.do"})
 public class AdminFilter extends HttpFilter implements Filter {
 	private static final long serialVersionUID = 5019094855642891983L;
 
