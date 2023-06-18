@@ -71,11 +71,15 @@ public class BoardDao {
 	}
 
 	private Board getBoardBy(ResultSet rs) throws SQLException {
-		return Board.builder().boardNo(rs.getInt("BOARD_NO")).boardTitle(rs.getString("BOARD_TITLE"))
+		return Board.builder()
+				.boardNo(rs.getInt("BOARD_NO"))
+				.boardTitle(rs.getString("BOARD_TITLE"))
 				.boardWriter(new MemberService().selectById(rs.getString("BOARD_WRITER")))
 				.boardContent(rs.getString("BOARD_CONTENT"))
 				.boardOriginalFilename(rs.getString("BOARD_ORIGINAL_FILENAME"))
 				.boardRenamedFilename(rs.getString("BOARD_RENAMED_FILENAME"))
-				.boardReadCount(rs.getInt("BOARD_READ_COUNT")).build();
+				.boardDate(rs.getDate("BOARD_DATE"))
+				.boardReadCount(rs.getInt("BOARD_READCOUNT"))
+				.build();
 	}
 }

@@ -22,7 +22,6 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException 
 	{
-		System.out.println(request.getRequestURI());
 		int currentPage = PageBarGenerator.toInteger(request.getParameter("currentPage"), 
 													PageBarGenerator.DEFAULT_CURRENT_PAGE);
 		int numPerPage = PageBarGenerator.toInteger(request.getParameter("numPerPage"), 
@@ -47,6 +46,7 @@ public class BoardListServlet extends HttpServlet {
 		
 		request.setAttribute("boards", boards);
 		request.setAttribute("pageBar", pageBar.toString());
+		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
