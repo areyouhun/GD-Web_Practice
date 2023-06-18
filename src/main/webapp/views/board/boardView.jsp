@@ -83,7 +83,15 @@ table#tbl-board td {
 				<td><%= board.getBoardContent() %></td>
 			</tr>
 			<tr>
-				<th colspan="2">수정하기, 삭제하기 버튼</th>
+				<% if (
+					memberLoggedIn != null 
+					&& (memberLoggedIn.getUserId().equals("admin") || memberLoggedIn.getUserId().equals(board.getBoardWriter().getUserId()))
+				) { %>
+	        		<th colspan="2">
+						<button class="btn btn-dark">수정</button>
+						<button class="btn btn-dark">삭제</button>
+					</th>
+        		<% } %>
 			</tr>
 
 

@@ -28,11 +28,26 @@ public class BoardService {
 		return count;
 	}
 	
-	public Board selectBoardByNo(int no) {
+	public Board selectBoardByNo(int no, boolean isRead) {
 		Connection conn = JDBCTemplate.getConnection();
+
+		// 조회수만 증가하고 클라이언트가 접속을 못할 경우에 대한 예외 처리도 해야 할 것 같음
+		if (boardDao.selectBoardByNo(conn, no) != null && isRead == false) {
+			increaseReadCount(conn, no);
+		}
 		Board board = boardDao.selectBoardByNo(conn, no);
+		
 		JDBCTemplate.close(conn);
 		return board;
+	}
+	
+	private void increaseReadCount(Connection conn, int no) {
+		int result = boardDao.updateBoardReadCount(conn, no);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
 	}
 	
 	public int insertBoard(Board board) {

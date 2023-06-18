@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.web.board.model.dto.Board;
+import com.web.common.JDBCTemplate;
 import com.web.common.PropertiesGenerator;
 import com.web.member.service.MemberService;
 
@@ -38,6 +39,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return boards;
 	}
@@ -56,6 +60,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return count;
 	}
@@ -75,8 +82,28 @@ public class BoardDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
 		}
 		return board;
+	}
+	
+	public int updateBoardReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql.getProperty("updateBoardReadCount"));
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 	public int insertBoard(Connection conn, Board board) {
