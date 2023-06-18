@@ -51,6 +51,10 @@ table#tbl-notice td {
 	padding: 5px 0 5px 10px;
 	text-align: left;
 }
+
+.download-container {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -70,7 +74,9 @@ table#tbl-notice td {
 				<th>첨부파일</th>
 				<td>
 					<% if (notice.getFilePath() != null) { %>
-						<img src="<%= request.getContextPath() %>/images/file.png">
+						<div class="download-container" onclick="downloadFile('<%= notice.getFilePath() %>');">
+							<img src="<%= request.getContextPath() %>/images/file.png"><span><%= notice.getFilePath() %></span>
+						</div>
 					<% } %>
 				</td>
 			</tr>
@@ -89,4 +95,9 @@ table#tbl-notice td {
 			<% } %>
 		</table>
 	</section>
+	<script>
+		const downloadFile = (fileName) => {
+			location.assign("<%= request.getContextPath() %>/fileDownload.do?fileName=" + fileName);
+		};
+	</script>
 <%@ include file="/views/common/footer.jsp" %>
