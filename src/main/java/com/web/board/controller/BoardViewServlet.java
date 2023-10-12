@@ -52,11 +52,11 @@ public class BoardViewServlet extends HttpServlet {
 		}
 		
 		Board board = new BoardService().selectBoardByNo(currentBoardNo, isRead);
-		List<BoardComment> boardComments = new BoardService().selectBoardCommentByBoardNo(currentBoardNo);
 		
 		String destination = "/views/board/boardView.jsp";
 		if (board != null) {
 			request.setAttribute("board", board);
+			List<BoardComment> boardComments = new BoardService().selectBoardCommentByBoardNo(currentBoardNo);
 			request.setAttribute("boardComments", boardComments);
 		} else {
 			destination = "/views/common/msg.jsp";

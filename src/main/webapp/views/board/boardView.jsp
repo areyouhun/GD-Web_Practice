@@ -68,8 +68,10 @@ table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 5px;}
 table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
 table#tbl-comment button.btn-reply{display:none;}
 table#tbl-comment button.btn-delete{display:none;}
+table#tbl-comment button.btn-update{display:none;}
 table#tbl-comment tr:hover {background:lightgray;}
 table#tbl-comment tr:hover button.btn-reply{display:inline;}
+table#tbl-comment tr:hover button.btn-update{display:inline;}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
 table#tbl-comment tr.level2 {color:gray; font-size: 14px;}
 table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
@@ -146,7 +148,8 @@ table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; backg
 			</td>
 		</tr>
 	<% } else { 
-		for (BoardComment boardComment : boardComments) { %>
+		for (BoardComment boardComment : boardComments) { 
+			if (boardComment.getLevel() == 1) {%>
 		<tr class="level1">
 			<td>
 				<sub class="comment-writer"><%= boardComment.getBoardCommentWriter() %></sub>
@@ -155,32 +158,60 @@ table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; backg
 				<p><%= boardComment.getBoardCommentContent() %></p>
 			</td>
 			<td>
-				<button class="btn-reply">답글</button>
+				<% if (memberLoggedIn != null) { %>
+				<button value="<%= boardComment.getBoardCommentNo() %>" class="btn-reply">답글</button>
+				<% } %>
 				<% if (memberLoggedIn != null 
 					&& (memberLoggedIn.getUserId().equals("admin") || memberLoggedIn.getUserId().equals(boardComment.getBoardCommentWriter()))
 				) { %>
-					<button class="btn-reply">수정</button>
-					<button class="btn-reply">삭제</button>
+					<button class="btn-update">수정</button>
+					<button class="btn-delete">삭제</button>
 				<% } %>
 			</td>
 		</tr>
-	<% }
+	<% } else { %>
+		<tr class="level2">
+			<td class="ps-5">
+				<sub class="comment-writer"><%= boardComment.getBoardCommentWriter() %></sub>
+				<sub class="comment-date"><%= boardComment.getBoardCommentDate() %></sub>
+				<br>
+				<p><%= boardComment.getBoardCommentContent() %></p>
+			</td>
+			<td></td>
+		</tr>
+	<% }}
 	} %>
 	</table>
 	</section>
 <script>
-const checkIfLoggedIn = () => {
-	<%-- if ("<%= memberLoggedIn == null %>" == "true") { --%>
-	if (<%= memberLoggedIn == null %>) {
-		alert("로그인 하셈");
-		$('#userId').focus();
+	const checkIfLoggedIn = () => {
+		<%-- if ("<%= memberLoggedIn == null %>" == "true") { --%>
+		if (<%= memberLoggedIn == null %>) {
+			alert("로그인 하셈");
+			$('#userId').focus();
+			return false;
+		}
+		
+		if (confirm("댓글을 등록하시겠습니까?")) {
+			return true;
+		}
 		return false;
-	}
-	
-	if (confirm("댓글을 등록하시겠습니까?")) {
-		return true;
-	}
-	return false;
-}	
+	}	
+		
+	$(".btn-reply").click(event => {
+		$(".box-reply").remove();
+		const $tr = $("<tr>").addClass("box-reply");
+		const $td = $("<td>").attr("colspan", "2");
+		const boardCommentRef = $(event.target).val();
+		
+		const formClone = $(".comment-editor>form").clone();
+		formClone.find("textarea").attr("rows", "1");
+		formClone.find("input[name=level]").val(2);
+		formClone.find("input[name=boardCommentRef]").val(boardCommentRef);
+		
+		$tr.append($td.append(formClone));
+		$(event.target).parents("tr").after($tr);
+		
+	});
 </script>
 <%@ include file="/views/common/footer.jsp" %>
