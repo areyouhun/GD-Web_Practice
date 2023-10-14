@@ -67,3 +67,15 @@ CREATE TABLE MEMBER (
     - `java -jar lombok-1.18.24.jar`처럼 lombok 파일명을 기입해 Installer 실행
     - Can't find IDE가 뜬다면 Specify location 버튼을 클릭 후 이클립스가 설치된 폴더로 가서 `eclipse.exe` 선택
     - 설치가 끝나면 lombok 파일도 `ojdbc.jar`와 같은 경로에 추가
+
+<br>
+
+## 구현 기능🦾
+| LIST |
+| ------ |
+| [1. 메인페이지](./docs/FEAT1_main.md) |
+| [2. 로그인](./docs/FEAT2_login.md) |
+| [3. 로그아웃 & ID와 PW 유효성 검사](./docs/FEAT3_logout.md) |
+| [4. 아이디 저장](./docs/FEAT4_saveid.md) |
+| [5. 회원가입 1](./docs/FEAT5_enroll1.md) |
+| [6. 회원가입 2](./docs/FEAT6_enroll2.md) |
