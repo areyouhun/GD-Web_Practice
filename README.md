@@ -75,7 +75,7 @@ CREATE TABLE MEMBER (
 | ------ |
 | [1. 메인페이지](./docs/FEAT1_main.md) |
 | [2. 로그인](./docs/FEAT2_login.md) |
-| [3. 로그아웃 & ID와 PW 유효성 검사](./docs/FEAT3_logout.md) |
+| [3. 로그아웃 / ID & PW 유효성 검사](./docs/FEAT3_logout.md) |
 | [4. 아이디 저장](./docs/FEAT4_saveid.md) |
 | [5. 회원가입 1](./docs/FEAT5_enroll1.md) |
 | [6. 회원가입 2](./docs/FEAT6_enroll2.md) |
