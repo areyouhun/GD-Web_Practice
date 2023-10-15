@@ -3,15 +3,15 @@
 
 <br>
 
-## 이클립스 & 프로젝트 세팅⚙
-### 인코딩
+## 이클립스 & 프로젝트 세팅
+### ✅인코딩
 - Window > Preferences > General > Workspace 메뉴의 Text file encoding 항목에서 UTF-8 설정
 - Window > Preferences > General > Editors > Text Editors > Spelling 메뉴의 Encoding 항목에서 UTF-8 설정
 - Window > Preferences > Web > CSS Files, HTML Files, JSP Files 메뉴에서 UTF-8 설정
 
 <br>
 
-### 프로젝트 생성
+### ✅프로젝트 생성
 - **Dynamic Web Project**로 생성
 - **Source folders on build path**: `.java` 파일이 저장되는 곳 (`src\main\java`)
 - **Default output folder**: `.class` 파일이 저장되는 곳 (`src\main\webapp\WEB-INF\classes`)
@@ -19,7 +19,7 @@
 
 <br>
 
-### 프로젝트 구성
+### ✅프로젝트 구성
 <p align="center">
 	<img width="60%" src="https://github.com/areyouhun/web_programming_practice/assets/97642395/c66b1d33-92b9-4f4b-8fa5-f7370f95fc0d">
 </p>
@@ -32,7 +32,7 @@
 
 <br>
 
-### DB - MEMBER 테이블
+### ✅DB - MEMBER 테이블
 ```sql
 CREATE TABLE MEMBER (
   USERID VARCHAR2(15) PRIMARY KEY, 
@@ -59,7 +59,7 @@ CREATE TABLE MEMBER (
 
 <br>
 
-### 라이브러리
+### ✅라이브러리
 - `ojdbc.jar`는 `src/main/webapp/WEB-INF/lib`에 추가
 - lombok도 추가할 경우
     - [Maven Repository](https://mvnrepository.com/)에서 lombok 다운로드
@@ -70,7 +70,7 @@ CREATE TABLE MEMBER (
 
 <br>
 
-## 구현 기능🦾
+## 구현 기능
 | LIST |
 | ------ |
 | [1. 메인페이지](./docs/FEAT1_main.md) |
