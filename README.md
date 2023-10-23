@@ -79,3 +79,4 @@ CREATE TABLE MEMBER (
 | [4. 아이디 저장](./docs/FEAT4_saveid.md) |
 | [5. 회원가입 1 - 회원 정보 등록](./docs/FEAT5_enroll1.md) |
 | [6. 회원가입 2 - 유효성 검사](./docs/FEAT6_enroll2.md) |
+| [7. 마이페이지 1](./docs/FEAT7_mypage1.md) |
