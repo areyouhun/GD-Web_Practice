@@ -5,12 +5,12 @@
 
 <br>
 
-## 뷰 - 헤더
+## View | 헤더
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/webapp/views/common/header.jsp#L76-L80
 
 <br>
 
-## 컨트롤러 - 회원관리 뷰 이동 서블릿
+## Controller | 회원관리 뷰 이동 서블릿
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/java/com/web/admin/controller/MemberListServlet.java#L16-L24
 
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/java/com/web/admin/controller/MemberListServlet.java#L46
@@ -20,14 +20,14 @@ https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4
 
 <br>
 
-## 뷰 - 회원관리
+## View | 회원관리
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/webapp/views/admin/memberManagement.jsp#L5-L15
 
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/webapp/views/admin/memberManagement.jsp#L141-L176
 
 <br>
 
-## Common - 어드민 필터
+## Common | 어드민 필터
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/java/com/web/common/filter/AdminFilter.java#L18
 
 https://github.com/areyouhun/web_practice/blob/570b0fc0a75044e3c77b1afd5ab7210d4003c4aa/src/main/java/com/web/common/filter/AdminFilter.java#L26-L45
