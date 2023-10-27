@@ -5,12 +5,12 @@
 
 <br>
 
-## 헤더
+## View | 헤더
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/common/header.jsp#L51-L57
 
 <br>
 
-## 마이페이지 이동 서블릿
+## Controller | 마이페이지 이동 서블릿
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/member/controller/MemberViewServlet.java#L15-L27
 
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/member/controller/MemberViewServlet.java#L41-L43
@@ -18,7 +18,7 @@ https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c589103
 
 <br>
 
-## 마이페이지 View - 조회
+## View | 마이페이지
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L5-L26
 
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L78-L86
@@ -29,20 +29,20 @@ https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c589103
   
 <br>
 
-## 마이페이지 View - 회원정보 수정
+## View | 마이페이지 - 회원정보 수정
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L42
 
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L89
 
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L94-L96
 
-#### ⛓ 회원정보 수정 서블릿
+#### ⛓ Controller | 회원정보 수정 처리 서블릿
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/member/controller/UpdateMemberEndServlet.java#L14-L48
 - 회원정보 수정 성공 시 세션에 바인딩된 로그인 정보를 업데이트한 후 메인 페이지로 이동한다.
 - 회원정보 수정 실패 시 <i>**마이페이지 이동 서블릿을 거친 뒤 마이페이지 View로 이동한다.**</i> 마이페이지 View를 렌더링하는 과정에서 request 객체에 바인딩된 데이터가 있어야 하기 때문에 반드시 서블릿을 먼저 거쳐야 한다.
 
 <br>
 
-## Common - 인증 필터
+## Common | 인증 필터
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/common/filter/AuthenticationFilter.java#L16-L40
 로그인한 회원만 마이페이지에 접근할 수 있도록 인증 필터를 추가한다.
