@@ -2,7 +2,7 @@
 
 <br>
 
-## 회원가입 폼 - onclick
+## View | 회원가입 폼 - onclick
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/webapp/views/member/enrollMember.jsp#L25-L47
 
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/webapp/views/member/enrollMember.jsp#L92-L95
@@ -12,13 +12,13 @@ submit 타입의 `<input>`에 onclick 이벤트를 적용하면 onsubmit 이벤�
 
 <br>
 
-## 회원가입 폼 - 아이디 중복 검사
+## View | 회원가입 폼 - 아이디 중복 검사
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/webapp/views/member/enrollMember.jsp#L125-L135
 
-#### ⛓ 아이디 중복 검사 서블릿
+#### ⛓ Controller | 아이디 중복 검사 서블릿
 https://github.com/areyouhun/web_practice/blob/7d6770d6d471afd66406461add9f3843580b1e6e/src/main/java/com/web/member/controller/IdDuplicateServlet.java#L14-L28
 
-#### ⛓ 아이디 중복 검사 결과 View
+#### ⛓ View | 아이디 중복 검사 결과
 https://github.com/areyouhun/web_practice/blob/7d6770d6d471afd66406461add9f3843580b1e6e/src/main/webapp/views/member/idDuplicate.jsp#L4-L6
 
 https://github.com/areyouhun/web_practice/blob/7d6770d6d471afd66406461add9f3843580b1e6e/src/main/webapp/views/member/idDuplicate.jsp#L29-L49
