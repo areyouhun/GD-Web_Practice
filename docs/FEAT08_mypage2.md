@@ -2,22 +2,22 @@
 
 <br>
 
-## 마이페이지 View
+## View | 마이페이지
 https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed0876997a1d24/src/main/webapp/views/member/memberView.jsp#L88
 
 https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed0876997a1d24/src/main/webapp/views/member/memberView.jsp#L98-L102
 
-#### ⛓ 비밀번호 수정 View 이동 서블릿
+#### ⛓ Controller | 비밀번호 수정 폼 이동 서블릿
 https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed0876997a1d24/src/main/java/com/web/member/controller/UpdatePasswordServlet.java#L10-L20
 
 <br>
 
-## 비밀번호 수정 View
+## View | 비밀번호 수정 폼
 https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed0876997a1d24/src/main/webapp/views/member/updatePassword.jsp#L4-L11
 
 https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed0876997a1d24/src/main/webapp/views/member/updatePassword.jsp#L46-L68
 
-#### ⛓ 비밀번호 수정 서블릿
+#### ⛓ Controller | 비밀번호 수정 처리 서블릿
 https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed0876997a1d24/src/main/java/com/web/member/controller/UpdatePasswordEndServlet.java#L14-L49
 - 비밀번호 수정 실패 시 비밀번호 수정 View 이동 서블릿을 요청한다.
 - 비밀번호 수정 성공 시 부모창 (마이페이지 View)은 로그아웃 서블릿을 요청하도록 하고, 자식창 (비밀번호 수정 View)은 닫아준다.
@@ -33,7 +33,7 @@ https://github.com/areyouhun/web_practice/blob/396c5b32a147ffea1f5187ade7ed08769
 
 <br>
 
-## Common - 단방향 암호화 필터
+## Common | 단방향 암호화 필터
 https://github.com/areyouhun/web_practice/blob/21e75986c70b37c86428d257282230821a41aad0/src/main/java/com/web/common/filter/PasswordEncryptionFilter.java#L15-L35
 사용자의 비밀번호가 쓰이는 곳에 단방향 암호화 필터를 적용한다.
 
@@ -60,7 +60,7 @@ ALTER TABLE MEMBER MODIFY PASSWORD VARCHAR2(100);
 
 <br>
 
-## Common - 양방향 대칭키 리스너
+## Common | 양방향 대칭키 리스너
 이메일과 전화번호엔 양방향 대칭키를 적용한다. DB에 저장할 땐 암호화하고, 화면에 출력할 땐 복호화한다. 양방향 대칭키이므로 키는 하나만 있으면 되며 서버에서 관리한다. 키가 바뀌기라도 하면 이전 키로 암호화한 정보는 복호화할 수 없으니 주의하자!
 
 <br>
@@ -86,8 +86,8 @@ https://github.com/areyouhun/web_practice/blob/21e75986c70b37c86428d257282230821
 
 <br>
 
-#### ⛓ 회원가입 서블릿 - 양방향 대칭키로 암호화
+#### ⛓ Controller | 회원가입 서블릿 - 양방향 대칭키로 <i>암호화</i>
 https://github.com/areyouhun/web_practice/blob/21e75986c70b37c86428d257282230821a41aad0/src/main/java/com/web/member/controller/EnrollMemberEndServlet.java#L36-L46
 
-#### ⛓ 마이페이지 이동 서블릿 - 양방향 대칭키로 복호화
+#### ⛓ Controller | 마이페이지 이동 서블릿 - 양방향 대칭키로 <i>복호화</i>
 https://github.com/areyouhun/web_practice/blob/21e75986c70b37c86428d257282230821a41aad0/src/main/java/com/web/member/controller/MemberViewServlet.java#L27-L39
