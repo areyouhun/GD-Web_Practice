@@ -5,17 +5,17 @@
 
 <br>
 
-## 헤더
+## View | 헤더
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/webapp/views/common/header.jsp#L41-L43
 
 <br>
 
-## 회원가입 폼 이동 서블릿
+## Controlle | 회원가입 폼 이동 서블릿
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/java/com/web/member/controller/EnrollMemberServlet.java#L10-L20
 
 <br>
 
-## 회원가입 폼
+## View | 회원가입 폼
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/webapp/views/member/enrollMember.jsp#L22-L25
 
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/webapp/views/member/enrollMember.jsp#L74-L90
@@ -27,7 +27,7 @@ https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f
 
 <br>
 
-## 회원 등록 서블릿
+## Controller | 회원가입 처리 서블릿
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/java/com/web/member/controller/EnrollMemberEndServlet.java#L15-L34
 
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/java/com/web/member/controller/EnrollMemberEndServlet.java#L48-L66
@@ -40,6 +40,6 @@ https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f
 
 <br>
 
-## Common - 인코딩 필터
+## Common | 인코딩 필터
 https://github.com/areyouhun/web_practice/blob/51bd9720584756a207d06e1a12722437f7cc54f7/src/main/java/com/web/common/filter/EncodingFilter.java#L13-L31
 문자셋을 통일시키지 않으면 한글 데이터가 깨져서 전달될 수 있다. 동일한 문자셋의 데이터를 주고 받기 위해 인코딩 필터를 추가한다. `@WebFilter`의 맵핑 URL을 `/*`로 설정해 모든 서블릿에 적용해준다.
