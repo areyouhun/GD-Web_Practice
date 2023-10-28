@@ -81,5 +81,5 @@ CREATE TABLE MEMBER (
 | [06. 회원가입 2 - 유효성 검사](./docs/FEAT06_enroll2.md) |
 | [07. 마이페이지 1 - 회원정보 수정](./docs/FEAT07_mypage1.md) |
 | [08. 마이페이지 2 - 비밀번호 수정 & 암호화](./docs/FEAT08_mypage2.md) |
-| [09. 회원관리 1 - 조회 & 페이징](./docs/FEAT09_user-management1.md) |
+| [09. 회원관리 1 - 페이징](./docs/FEAT09_user-management1.md) |
 | [10. 회원관리 2 - 검색 필터](./docs/FEAT10_user-management2.md) |
