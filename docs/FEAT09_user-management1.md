@@ -101,7 +101,7 @@ pageBar의 요소를 가져올 때 사용할 인덱스용 상수 및 메소드�
 
 <br>
 
-#### ⛓ Controller | 회원관리 이동 서블릿
+## Controller | 회원관리 이동 서블릿 - 페이징 적용
 https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/java/com/web/admin/controller/MemberListServlet.java#L25-L46
 
 https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/java/com/web/admin/controller/MemberListServlet.java#L49-L50
@@ -114,10 +114,6 @@ https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483df
 #### ⛓ 어드민 DAO
 https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/java/com/web/admin/model/dao/AdminDao.java#L49-L68
 
-https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/java/com/web/admin/model/dao/AdminDao.java#L26-L47
-
-<br>
-
 ```sql
 -- sql.getProperty("selectMemberCount")
 
@@ -125,6 +121,8 @@ SELECT COUNT(*) FROM MEMBER
 ```
 
 <br>
+
+https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/java/com/web/admin/model/dao/AdminDao.java#L26-L47
 
 ```sql
 -- sql.getProperty("selectMemberAll")
@@ -140,5 +138,5 @@ SELECT * FROM (SELECT ROWNUM AS RNUM, M.* FROM (SELECT * FROM MEMBER) M) WHERE R
 
 <br>
 
-#### ⛓ View | 회원관리
+## View | 회원관리 - 페이징 적용
 https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/webapp/views/admin/memberManagement.jsp#L177-L181
