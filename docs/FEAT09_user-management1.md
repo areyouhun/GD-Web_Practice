@@ -141,6 +141,4 @@ SELECT * FROM (SELECT ROWNUM AS RNUM, M.* FROM (SELECT * FROM MEMBER) M) WHERE R
 <br>
 
 #### ⛓ View | 회원관리
-https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/webapp/views/admin/memberManagement.jsp#L20-L23
-
 https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/webapp/views/admin/memberManagement.jsp#L177-L181
