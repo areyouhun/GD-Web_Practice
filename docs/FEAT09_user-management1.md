@@ -90,7 +90,7 @@ https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483df
 <br>
 
 https://github.com/areyouhun/web_practice/blob/479d0a50b65174473a7568daea6a483dfc755872/src/main/java/com/web/common/PageBarGenerator.java#L182-L188
-요청 URI의 쿼리 스트링을 변경하는 메소드이다. 페이지 요청 시 검색 필터가 없으면 요청 파라미터로 currentPage부터 시작하지만 (`?currentPage=값`), 검색 필터가 있으면 요청 파라미터로 필터 정보 (`?검색필터=값&curretPage=값`)부터 시작하도록 코드를 작성했다. 그래서 추가한 메소드이다.
+요청 URI의 쿼리 파라미터를 변경하는 메소드이다. 페이지 요청 시 검색 필터가 없으면 쿼리 파라미터가 currentPage부터 시작하지만 (`?currentPage=값`), 검색 필터가 있으면 쿼리 파라미터가 필터 정보 (`?검색필터=값&curretPage=값`)부터 시작하도록 코드를 작성했다. 그래서 추가한 메소드이다.
 
 <br>
 
