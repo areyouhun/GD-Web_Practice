@@ -1,4 +1,4 @@
-# 7. 마이페이지 1 - 회원정보 수정
+# 06. 마이페이지 1 - 회원정보 수정
 <p align="center">
     <img width="100%" src="https://github.com/areyouhun/web_practice/assets/97642395/54f52b1d-bb2b-48b1-875e-4659e46a3e6a">
 </p>
@@ -18,8 +18,26 @@ https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c589103
 
 <br>
 
+#### ⛓ 회원 서비스
+https://github.com/areyouhun/web_practice/blob/cc493ae93ec57525c7965fe1e92117ef27ff864b/src/main/java/com/web/member/service/MemberService.java#L36-L41
+
+<br>
+
+#### ⛓ 회원 DAO
+https://github.com/areyouhun/web_practice/blob/cc493ae93ec57525c7965fe1e92117ef27ff864b/src/main/java/com/web/member/model/dao/MemberDao.java#L72-L92
+
+```sql
+-- sql.getProperty("selectById")
+
+SELECT * FROM MEMBER WHERE USERID = ?
+```
+
+<br>
+
 ## View | 마이페이지
-https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L5-L26
+https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L5-L11
+
+https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L13-L26
 
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L78-L86
 
@@ -35,11 +53,33 @@ https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c589103
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L89
 
 https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/webapp/views/member/memberView.jsp#L94-L96
+  
+<br>
 
-#### ⛓ Controller | 회원정보 수정 처리 서블릿
-https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/member/controller/UpdateMemberEndServlet.java#L14-L48
+## Controller | 회원정보 수정 처리 서블릿
+https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/member/controller/UpdateMemberEndServlet.java#L20-L33
+
+https://github.com/areyouhun/web_practice/blob/79ce414d4b5a0520858c046840c58910332ee24e/src/main/java/com/web/member/controller/UpdateMemberEndServlet.java#L35-L48
 - 회원정보 수정 성공 시 세션에 바인딩된 로그인 정보를 업데이트한 후 메인 페이지로 이동한다.
-- 회원정보 수정 실패 시 <i>**마이페이지 이동 서블릿을 거친 뒤 마이페이지 View로 이동한다.**</i> 마이페이지 View를 렌더링하는 과정에서 request 객체에 바인딩된 데이터가 있어야 하기 때문에 반드시 서블릿을 먼저 거쳐야 한다.
+- 회원정보 수정 실패 시 **마이페이지 이동 서블릿을 거친 뒤 마이페이지로 이동한다.** 마이페이지를 렌더링하는 과정에서 요청 객체에 저장한 회원 데이터를 사용하기 때문에 반드시 서블릿을 먼저 거쳐야 한다.
+
+<br>
+
+#### ⛓ 회원 서비스
+https://github.com/areyouhun/web_practice/blob/cc493ae93ec57525c7965fe1e92117ef27ff864b/src/main/java/com/web/member/service/MemberService.java#L43-L54
+
+<br>
+
+#### ⛓ 회원 DAO
+https://github.com/areyouhun/web_practice/blob/cc493ae93ec57525c7965fe1e92117ef27ff864b/src/main/java/com/web/member/model/dao/MemberDao.java#L94-L115
+
+```sql
+-- sql.getProperty("updateMember")
+
+UPDATE MEMBER 
+SET USERNAME = ?, AGE = ?, GENDER = ?, EMAIL = ?, PHONE = ?, ADDRESS = ?, HOBBY = ? 
+WHERE USERID = ?
+```
 
 <br>
 

@@ -1,4 +1,4 @@
-# 메인페이지
+# 01. 메인페이지
 <p align="center">
     <img width="100%" src="https://github.com/areyouhun/web_practice/assets/97642395/b8943f1c-837b-475a-a40f-bb73bfbecaf4">
 </p>
